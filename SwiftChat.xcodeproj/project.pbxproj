@@ -1,0 +1,532 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		8C3C697A195592240048C518 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C3C6979195592240048C518 /* AppDelegate.swift */; };
+		8C3C697C195592240048C518 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C3C697B195592240048C518 /* ViewController.swift */; };
+		8C3C6981195592240048C518 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8C3C6980195592240048C518 /* Images.xcassets */; };
+		8C3C69B7195592D30048C518 /* libLightstreamer_iOS_client_64.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C3C69B5195592D30048C518 /* libLightstreamer_iOS_client_64.a */; };
+		8C8C0F5E196BEB340069601A /* ChatCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C8C0F5D196BEB340069601A /* ChatCell.swift */; };
+		8C8C0F5F196C29050069601A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8C3C697D195592240048C518 /* Main.storyboard */; };
+		8C90F0A4196AA9FA00284BFF /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C90F0A3196AA9FA00284BFF /* SystemConfiguration.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		8C3C6987195592240048C518 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8C3C696C195592240048C518 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8C3C6973195592240048C518;
+			remoteInfo = SwiftChat;
+		};
+		8C90F09C196AA74900284BFF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8C3C696C195592240048C518 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8C3C6973195592240048C518;
+			remoteInfo = SwiftChat;
+		};
+		8C90F09E196AA74900284BFF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8C3C696C195592240048C518 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8C3C6973195592240048C518;
+			remoteInfo = SwiftChat;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		8C3C6974195592240048C518 /* SwiftChat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftChat.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		8C3C6978195592240048C518 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8C3C6979195592240048C518 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		8C3C697B195592240048C518 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		8C3C697E195592240048C518 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		8C3C6980195592240048C518 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		8C3C6986195592240048C518 /* SwiftChatTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftChatTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		8C3C6999195592D30048C518 /* LightstreamerClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LightstreamerClient.h; sourceTree = "<group>"; };
+		8C3C699A195592D30048C518 /* LSClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSClient.h; sourceTree = "<group>"; };
+		8C3C699B195592D30048C518 /* LSConnectionConstraints.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSConnectionConstraints.h; sourceTree = "<group>"; };
+		8C3C699C195592D30048C518 /* LSConnectionDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSConnectionDelegate.h; sourceTree = "<group>"; };
+		8C3C699D195592D30048C518 /* LSConnectionInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSConnectionInfo.h; sourceTree = "<group>"; };
+		8C3C699E195592D30048C518 /* LSConnectionStatus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSConnectionStatus.h; sourceTree = "<group>"; };
+		8C3C699F195592D30048C518 /* LSException.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSException.h; sourceTree = "<group>"; };
+		8C3C69A0195592D30048C518 /* LSExtendedTableInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSExtendedTableInfo.h; sourceTree = "<group>"; };
+		8C3C69A1195592D30048C518 /* LSLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSLog.h; sourceTree = "<group>"; };
+		8C3C69A2195592D30048C518 /* LSMessageDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSMessageDelegate.h; sourceTree = "<group>"; };
+		8C3C69A3195592D30048C518 /* LSMessageInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSMessageInfo.h; sourceTree = "<group>"; };
+		8C3C69A4195592D30048C518 /* LSMode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSMode.h; sourceTree = "<group>"; };
+		8C3C69A5195592D30048C518 /* LSMPNInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSMPNInfo.h; sourceTree = "<group>"; };
+		8C3C69A6195592D30048C518 /* LSMPNKey.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSMPNKey.h; sourceTree = "<group>"; };
+		8C3C69A7195592D30048C518 /* LSMPNStatus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSMPNStatus.h; sourceTree = "<group>"; };
+		8C3C69A8195592D30048C518 /* LSMPNTokenChangeInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSMPNTokenChangeInfo.h; sourceTree = "<group>"; };
+		8C3C69A9195592D30048C518 /* LSMPNTokenStatus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSMPNTokenStatus.h; sourceTree = "<group>"; };
+		8C3C69AA195592D30048C518 /* LSPushClientException.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSPushClientException.h; sourceTree = "<group>"; };
+		8C3C69AB195592D30048C518 /* LSPushConnectionException.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSPushConnectionException.h; sourceTree = "<group>"; };
+		8C3C69AC195592D30048C518 /* LSPushServerException.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSPushServerException.h; sourceTree = "<group>"; };
+		8C3C69AD195592D30048C518 /* LSPushUpdateException.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSPushUpdateException.h; sourceTree = "<group>"; };
+		8C3C69AE195592D30048C518 /* LSSubscribedTableKey.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSSubscribedTableKey.h; sourceTree = "<group>"; };
+		8C3C69AF195592D30048C518 /* LSSubscriptionConstraints.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSSubscriptionConstraints.h; sourceTree = "<group>"; };
+		8C3C69B0195592D30048C518 /* LSTableDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSTableDelegate.h; sourceTree = "<group>"; };
+		8C3C69B1195592D30048C518 /* LSTableInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSTableInfo.h; sourceTree = "<group>"; };
+		8C3C69B2195592D30048C518 /* LSUpdateInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSUpdateInfo.h; sourceTree = "<group>"; };
+		8C3C69B4195592D30048C518 /* libLightstreamer_iOS_client.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libLightstreamer_iOS_client.a; sourceTree = "<group>"; };
+		8C3C69B5195592D30048C518 /* libLightstreamer_iOS_client_64.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libLightstreamer_iOS_client_64.a; sourceTree = "<group>"; };
+		8C8C0F5D196BEB340069601A /* ChatCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatCell.swift; sourceTree = "<group>"; };
+		8C90F0A0196AA97400284BFF /* SwiftChat-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SwiftChat-Bridging-Header.h"; sourceTree = "<group>"; };
+		8C90F0A3196AA9FA00284BFF /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		8C3C6971195592240048C518 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8C90F0A4196AA9FA00284BFF /* SystemConfiguration.framework in Frameworks */,
+				8C3C69B7195592D30048C518 /* libLightstreamer_iOS_client_64.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8C3C6983195592240048C518 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		8C3C696B195592240048C518 = {
+			isa = PBXGroup;
+			children = (
+				8C3C6976195592240048C518 /* SwiftChat */,
+				8C3C6997195592D30048C518 /* Lightstreamer client for iOS */,
+				8C90F0A3196AA9FA00284BFF /* SystemConfiguration.framework */,
+				8C3C6975195592240048C518 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		8C3C6975195592240048C518 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8C3C6974195592240048C518 /* SwiftChat.app */,
+				8C3C6986195592240048C518 /* SwiftChatTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		8C3C6976195592240048C518 /* SwiftChat */ = {
+			isa = PBXGroup;
+			children = (
+				8C3C6979195592240048C518 /* AppDelegate.swift */,
+				8C3C697B195592240048C518 /* ViewController.swift */,
+				8C8C0F5D196BEB340069601A /* ChatCell.swift */,
+				8C3C697D195592240048C518 /* Main.storyboard */,
+				8C3C6980195592240048C518 /* Images.xcassets */,
+				8C3C6977195592240048C518 /* Supporting Files */,
+			);
+			path = SwiftChat;
+			sourceTree = "<group>";
+		};
+		8C3C6977195592240048C518 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				8C3C6978195592240048C518 /* Info.plist */,
+				8C90F0A0196AA97400284BFF /* SwiftChat-Bridging-Header.h */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		8C3C6997195592D30048C518 /* Lightstreamer client for iOS */ = {
+			isa = PBXGroup;
+			children = (
+				8C3C6998195592D30048C518 /* include */,
+				8C3C69B3195592D30048C518 /* lib */,
+			);
+			path = "Lightstreamer client for iOS";
+			sourceTree = "<group>";
+		};
+		8C3C6998195592D30048C518 /* include */ = {
+			isa = PBXGroup;
+			children = (
+				8C3C6999195592D30048C518 /* LightstreamerClient.h */,
+				8C3C699A195592D30048C518 /* LSClient.h */,
+				8C3C699B195592D30048C518 /* LSConnectionConstraints.h */,
+				8C3C699C195592D30048C518 /* LSConnectionDelegate.h */,
+				8C3C699D195592D30048C518 /* LSConnectionInfo.h */,
+				8C3C699E195592D30048C518 /* LSConnectionStatus.h */,
+				8C3C699F195592D30048C518 /* LSException.h */,
+				8C3C69A0195592D30048C518 /* LSExtendedTableInfo.h */,
+				8C3C69A1195592D30048C518 /* LSLog.h */,
+				8C3C69A2195592D30048C518 /* LSMessageDelegate.h */,
+				8C3C69A3195592D30048C518 /* LSMessageInfo.h */,
+				8C3C69A4195592D30048C518 /* LSMode.h */,
+				8C3C69A5195592D30048C518 /* LSMPNInfo.h */,
+				8C3C69A6195592D30048C518 /* LSMPNKey.h */,
+				8C3C69A7195592D30048C518 /* LSMPNStatus.h */,
+				8C3C69A8195592D30048C518 /* LSMPNTokenChangeInfo.h */,
+				8C3C69A9195592D30048C518 /* LSMPNTokenStatus.h */,
+				8C3C69AA195592D30048C518 /* LSPushClientException.h */,
+				8C3C69AB195592D30048C518 /* LSPushConnectionException.h */,
+				8C3C69AC195592D30048C518 /* LSPushServerException.h */,
+				8C3C69AD195592D30048C518 /* LSPushUpdateException.h */,
+				8C3C69AE195592D30048C518 /* LSSubscribedTableKey.h */,
+				8C3C69AF195592D30048C518 /* LSSubscriptionConstraints.h */,
+				8C3C69B0195592D30048C518 /* LSTableDelegate.h */,
+				8C3C69B1195592D30048C518 /* LSTableInfo.h */,
+				8C3C69B2195592D30048C518 /* LSUpdateInfo.h */,
+			);
+			path = include;
+			sourceTree = "<group>";
+		};
+		8C3C69B3195592D30048C518 /* lib */ = {
+			isa = PBXGroup;
+			children = (
+				8C3C69B4195592D30048C518 /* libLightstreamer_iOS_client.a */,
+				8C3C69B5195592D30048C518 /* libLightstreamer_iOS_client_64.a */,
+			);
+			path = lib;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		8C3C6973195592240048C518 /* SwiftChat */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8C3C6990195592240048C518 /* Build configuration list for PBXNativeTarget "SwiftChat" */;
+			buildPhases = (
+				8C3C6970195592240048C518 /* Sources */,
+				8C3C6971195592240048C518 /* Frameworks */,
+				8C3C6972195592240048C518 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SwiftChat;
+			productName = SwiftChat;
+			productReference = 8C3C6974195592240048C518 /* SwiftChat.app */;
+			productType = "com.apple.product-type.application";
+		};
+		8C3C6985195592240048C518 /* SwiftChatTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8C3C6993195592240048C518 /* Build configuration list for PBXNativeTarget "SwiftChatTests" */;
+			buildPhases = (
+				8C3C6982195592240048C518 /* Sources */,
+				8C3C6983195592240048C518 /* Frameworks */,
+				8C3C6984195592240048C518 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				8C3C6988195592240048C518 /* PBXTargetDependency */,
+				8C90F09D196AA74900284BFF /* PBXTargetDependency */,
+				8C90F09F196AA74900284BFF /* PBXTargetDependency */,
+			);
+			name = SwiftChatTests;
+			productName = SwiftChatTests;
+			productReference = 8C3C6986195592240048C518 /* SwiftChatTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		8C3C696C195592240048C518 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0600;
+				ORGANIZATIONNAME = Weswit;
+				TargetAttributes = {
+					8C3C6973195592240048C518 = {
+						CreatedOnToolsVersion = 6.0;
+						DevelopmentTeam = 7PGFJN8WH5;
+					};
+					8C3C6985195592240048C518 = {
+						CreatedOnToolsVersion = 6.0;
+						TestTargetID = 8C3C6973195592240048C518;
+					};
+				};
+			};
+			buildConfigurationList = 8C3C696F195592240048C518 /* Build configuration list for PBXProject "SwiftChat" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 8C3C696B195592240048C518;
+			productRefGroup = 8C3C6975195592240048C518 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				8C3C6973195592240048C518 /* SwiftChat */,
+				8C3C6985195592240048C518 /* SwiftChatTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		8C3C6972195592240048C518 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8C8C0F5F196C29050069601A /* Main.storyboard in Resources */,
+				8C3C6981195592240048C518 /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8C3C6984195592240048C518 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		8C3C6970195592240048C518 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8C3C697C195592240048C518 /* ViewController.swift in Sources */,
+				8C3C697A195592240048C518 /* AppDelegate.swift in Sources */,
+				8C8C0F5E196BEB340069601A /* ChatCell.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8C3C6982195592240048C518 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		8C3C6988195592240048C518 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8C3C6973195592240048C518 /* SwiftChat */;
+			targetProxy = 8C3C6987195592240048C518 /* PBXContainerItemProxy */;
+		};
+		8C90F09D196AA74900284BFF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8C3C6973195592240048C518 /* SwiftChat */;
+			targetProxy = 8C90F09C196AA74900284BFF /* PBXContainerItemProxy */;
+		};
+		8C90F09F196AA74900284BFF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8C3C6973195592240048C518 /* SwiftChat */;
+			targetProxy = 8C90F09E196AA74900284BFF /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		8C3C697D195592240048C518 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8C3C697E195592240048C518 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		8C3C698E195592240048C518 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Alessandro Alinone (2CRCRTZ265)";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Applications/Xcode6-Beta2.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include",
+					"\"./Lightstreamer client for iOS/include\"",
+				);
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LIBRARY_SEARCH_PATHS = "\"./Lightstreamer client for iOS/lib\"";
+				METAL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		8C3C698F195592240048C518 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Applications/Xcode6-Beta2.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include",
+					"\"./Lightstreamer client for iOS/include\"",
+				);
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LIBRARY_SEARCH_PATHS = "\"./Lightstreamer client for iOS/lib\"";
+				METAL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		8C3C6991195592240048C518 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				INFOPLIST_FILE = SwiftChat/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "SwiftChat/SwiftChat-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		8C3C6992195592240048C518 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				INFOPLIST_FILE = SwiftChat/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "SwiftChat/SwiftChat-Bridging-Header.h";
+			};
+			name = Release;
+		};
+		8C3C6994195592240048C518 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/SwiftChat.app/SwiftChat";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = SwiftChatTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				METAL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+			};
+			name = Debug;
+		};
+		8C3C6995195592240048C518 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/SwiftChat.app/SwiftChat";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = SwiftChatTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				METAL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		8C3C696F195592240048C518 /* Build configuration list for PBXProject "SwiftChat" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8C3C698E195592240048C518 /* Debug */,
+				8C3C698F195592240048C518 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8C3C6990195592240048C518 /* Build configuration list for PBXNativeTarget "SwiftChat" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8C3C6991195592240048C518 /* Debug */,
+				8C3C6992195592240048C518 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8C3C6993195592240048C518 /* Build configuration list for PBXNativeTarget "SwiftChatTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8C3C6994195592240048C518 /* Debug */,
+				8C3C6995195592240048C518 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 8C3C696C195592240048C518 /* Project object */;
+}

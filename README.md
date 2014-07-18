@@ -4,9 +4,14 @@
 
 This project contains an example of an application for iPhone that employs the [Lightstreamer iOS Client library](http://www.lightstreamer.com/docs/client_ios_api/index.html).
 
-## Screenshot
+## Live Demo
 
-![screenshot](screenshot_large.png)<br>
+
+[![screenshot](screenshot_large.png)]()
+
+###[![](http://demos.lightstreamer.com/site/img/play.png) View live demo]()
+
+** Note: The Live Demo is currently not available, but will be available soon on [iTunes App Store](https://itunes.apple.com/us/genre/ios/id36?mt=8)**
 
 ## Details
 
@@ -22,7 +27,7 @@ Before you can build this demo you should complete this project with the Lighstr
 * drop into the `Lightstreamer client for iOS/lib` folder of this project the libLightstreamer_iOS_client_64.a file from the `/DOCS-SDKs/sdk_client_ios/lib` of [latest Lightstreamer distribution](http://www.lightstreamer.com/download).
 * drop into the `Lightstreamer client for iOS/include` folder of this project all the include files from the `/DOCS-SDKs/sdk_client_ios/include` of [latest Lightstreamer distribution](http://www.lightstreamer.com/download).
 
-## Deploy
+### Deploy
 
 With the current settings, the demo tries to connect to the demo server currently running on Lightstreamer website.
 The demo can be reconfigured and recompiled in order to connect to the local installation of Lightstreamer Server. You just have to change SERVER_URL, as defined in `SwiftChat/ViewController.swift`; a ":port" part can also be added.

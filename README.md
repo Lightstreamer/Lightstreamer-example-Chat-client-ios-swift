@@ -23,7 +23,7 @@ This app uses the <b>iOS Client API for Lightstreamer</b> to handle the communic
 ## Build
 Binaries for the application are not provided, but a full Xcode 6.0 project specification, ready for a compilation of the demo sources is provided. Please recall that you need a valid iOS Developer Program membership in order to debug or deploy your app on a test device.
 
-To build your own version of the *Basic Chat Demo - iOS Client* follow these steps.
+To build your own version of the *Basic Chat Demo - iOS Client*, follow these steps.
 
 * Complete this project with the Lighstreamer iOS Client library: 
     * drop into the `Lightstreamer client for iOS/lib` folder of this project the libLightstreamer_iOS_client_64.a file from the `/DOCS-SDKs/sdk_client_ios/lib` of [latest Lightstreamer distribution](http://www.lightstreamer.com/download).

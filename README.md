@@ -11,7 +11,7 @@ This project contains an example of an application for iPhone that employs the [
 
 ###![](http://demos.lightstreamer.com/site/img/play.png) View live demo
 
-**Note: The Live Demo is currently not available, but will be available soon on [iTunes App Store](https://itunes.apple.com/us/genre/ios/id36?mt=8)**
+**Note! The Live Demo is currently not available, but will be available soon on the App Store.**
 
 ## Details
 

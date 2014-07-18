@@ -7,9 +7,9 @@ This project contains an example of an application for iPhone that employs the [
 ## Live Demo
 
 
-[![screenshot](screenshot_large.png)]
+![screenshot](screenshot_large.png)
 
-###[![](http://demos.lightstreamer.com/site/img/play.png) View live demo]
+###![](http://demos.lightstreamer.com/site/img/play.png) View live demo
 
 **Note: The Live Demo is currently not available, but will be available soon on [iTunes App Store](https://itunes.apple.com/us/genre/ios/id36?mt=8)**
 

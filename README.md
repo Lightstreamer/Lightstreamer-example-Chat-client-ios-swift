@@ -31,18 +31,19 @@ Before you can build this demo you should complete this project with the Lighstr
 
 With the current settings, the demo tries to connect to the demo server currently running on Lightstreamer website.
 The demo can be reconfigured and recompiled in order to connect to the local installation of Lightstreamer Server. You just have to change SERVER_URL, as defined in `SwiftChat/ViewController.swift`; a ":port" part can also be added.
-The example requires that the [QUOTE_ADAPTER](https://github.com/Weswit/Lightstreamer-example-Stocklist-adapter-java) and [LiteralBasedProvider](https://github.com/Weswit/Lightstreamer-example-ReusableMetadata-adapter-java) have to be deployed in your local Lightstreamer server instance. The factory configuration of Lightstreamer server already provides this adapter deployed.<br>
+The example requires that the [Lightstreamer - Basic Chat Demo - Java Adapter](https://github.com/Weswit/Lightstreamer-example-Chat-adapter-java) and [LiteralBasedProvider Metadata Adapter](https://github.com/Weswit/Lightstreamer-example-ReusableMetadata-adapter-java#literalbasedprovider-metadata-adapter) have to be deployed in your local Lightstreamer server instance. *The factory configuration of Lightstreamer server already provides the LiteralBasedProvider Metadata Adapter deployed.*
 
 ## See Also
 
-### Lightstreamer Adapters needed by this demo client
+### Lightstreamer Adapters Needed by This Client
 
-* [Lightstreamer - Stock- List Demo - Java Adapter](https://github.com/Weswit/Lightstreamer-example-Stocklist-adapter-java)
-* [Lightstreamer - Reusable Metadata Adapters- Java Adapter](https://github.com/Weswit/Lightstreamer-example-ReusableMetadata-adapter-java)
+* [Lightstreamer - Basic Chat Demo - Java Adapter](https://github.com/Weswit/Lightstreamer-example-Chat-adapter-java)
+* [LiteralBasedProvider Metadata Adapter](https://github.com/Weswit/Lightstreamer-example-ReusableMetadata-adapter-java#literalbasedprovider-metadata-adapter)
 
-### Similar demo clients that may interest you
+### Related Projects
 
 * [Lightstreamer - Basic Chat Demo - HTML Client](https://github.com/Weswit/Lightstreamer-example-Chat-client-javascript)
+* [Lightstreamer - Basic Stock-List Demo - iOS Client](https://github.com/Weswit/Lightstreamer-example-StockList-client-ios)
 
 ## Lightstreamer Compatibility Notes
 

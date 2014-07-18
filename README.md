@@ -16,9 +16,9 @@ This project contains an example of an application for iPhone that employs the [
 
 ## Details
 
-This app, compatible with iPhone, is a Swift version of the [Chat Demos](https://github.com/Weswit/Lightstreamer-example-Chat-client-javascript).<br>
+This app, compatible with iPhone, is a Swift version of the [Lightstreamer - Basic Chat Demo - HTML Client](https://github.com/Weswit/Lightstreamer-example-Chat-client-javascript).
 
-This app uses the <b>iOS Client API for Lightstreamer</b> to handle the communications with Lightstreamer Server. A simple user interface is implemented to display the real-time messages received from Lightstreamer Server.<br>
+This app uses the **iOS Client API for Lightstreamer** to handle the communications with Lightstreamer Server. A simple user interface is implemented to display the real-time messages received from Lightstreamer Server.
 
 ## Build
 Binaries for the application are not provided, but a full Xcode 6.0 project specification, ready for a compilation of the demo sources is provided. Please recall that you need a valid iOS Developer Program membership in order to debug or deploy your app on a test device.

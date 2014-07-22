@@ -44,11 +44,11 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 	var _keyboardShown = false
 	var _snapshotEnded = false
 	
-	@IBOutlet var _tableView: UITableView
-	@IBOutlet var _textField: UITextField
-	@IBOutlet var _sendButton: UIButton
+	@IBOutlet var _tableView: UITableView?
+	@IBOutlet var _textField: UITextField?
+	@IBOutlet var _sendButton: UIButton?
 
-	@IBOutlet var _waitView: UIView
+	@IBOutlet var _waitView: UIView?
 	
 	
 	//////////////////////////////////////////////////////////////////////////
@@ -82,8 +82,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 	@IBAction func sendTapped() {
 
 		// Get the message text
-		let message = _textField.text
-		_textField.text = ""
+		let message = _textField!.text
+		_textField!.text = ""
 		
 		NSLog("Sending message \"\(message)\"...")
 		
@@ -140,11 +140,11 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 		let address = row["address"]
 		
 		if message {
-			cell!.messageTextView.text = message
+			cell!.messageTextView!.text = message
 		}
 		
 		if timestamp && address {
-			cell!.originLabel.text = "From \(address!) at \(timestamp!)"
+			cell!.originLabel!.text = "From \(address!) at \(timestamp!)"
 		}
 		
 		return cell
@@ -270,7 +270,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 		dispatch_sync(dispatch_get_main_queue()) {
 			
 			// Show wait view
-			self._waitView.hidden = false
+			self._waitView!.hidden = false
 		}
 
 		// Clear snapshot status
@@ -309,13 +309,13 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 			var addr = in_addr(s_addr: 0)
 			inet_aton(address.bridgeToObjectiveC().UTF8String, &addr)
 			
-			let b1 = UInt32(addr.s_addr)  >> 24
+			let b1 = UInt32(addr.s_addr) >> 24
 			let b2 = (UInt32(addr.s_addr) & 0x00ff0000) >> 16
 			let b3 = (UInt32(addr.s_addr) & 0x0000ff00) >>  8
 			let b4 = UInt32(addr.s_addr) & 0x000000ff
 			
-			let hue = CGFloat((b4 << 8) + b2) / 65535.0
-			let saturation = (CGFloat((b3 << 8) + b1) / 65535.0) / 5.0 + 0.1
+			let hue = CGFloat(UInt((b4 << 8) + b2)) / 65535.0
+			let saturation = (CGFloat(UInt((b3 << 8) + b1)) / 65535.0) / 5.0 + 0.1
 			
 			let color = UIColor(hue: hue, saturation: saturation, brightness: 1.0, alpha: 1.0)
 			_colors[address!] = color
@@ -339,18 +339,18 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 				objc_sync_enter(self)
 				
 				// Notify table view to reload cells
-				self._tableView.reloadData()
+				self._tableView!.reloadData()
 				
 				let rowCount = self._rows.count
 				
 				objc_sync_exit(self)
 				
 				// If the table is positioned on last row, scroll with new message
-				let visibleRows = self._tableView.indexPathsForVisibleRows()
+				let visibleRows = self._tableView!.indexPathsForVisibleRows()
 				if visibleRows.count > 0 {
 					let lastIndexPath = visibleRows[visibleRows.count-1] as NSIndexPath
 					if lastIndexPath.row == rowCount-2 {
-						self._tableView.scrollToRowAtIndexPath(NSIndexPath(forRow: rowCount-1, inSection: 0), atScrollPosition: UITableViewScrollPosition.Bottom, animated: true)
+						self._tableView!.scrollToRowAtIndexPath(NSIndexPath(forRow: rowCount-1, inSection: 0), atScrollPosition: UITableViewScrollPosition.Bottom, animated: true)
 					}
 				}
 			}
@@ -368,7 +368,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 			objc_sync_enter(self)
 			
 			// Notify table view to reload cells
-			self._tableView.reloadData()
+			self._tableView!.reloadData()
 			
 			let rowCount = self._rows.count
 			
@@ -376,11 +376,11 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 
 			// Scroll to bottom
 			if rowCount > 0 {
-				self._tableView.scrollToRowAtIndexPath(NSIndexPath(forRow: rowCount-1, inSection: 0), atScrollPosition: UITableViewScrollPosition.Bottom, animated: false)
+				self._tableView!.scrollToRowAtIndexPath(NSIndexPath(forRow: rowCount-1, inSection: 0), atScrollPosition: UITableViewScrollPosition.Bottom, animated: false)
 			}
 			
 			// Hide wait view
-			self._waitView.hidden = true
+			self._waitView!.hidden = true
 		}
 	}
 	
@@ -424,7 +424,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 		let keyboardFrame = notification.userInfo[UIKeyboardFrameBeginUserInfoKey]!.CGRectValue()
 		let keyboardDuration = notification.userInfo[UIKeyboardAnimationDurationUserInfoKey]!.doubleValue
 		
-		let visibleRows = _tableView.indexPathsForVisibleRows()
+		let visibleRows = _tableView!.indexPathsForVisibleRows()
 		let lastIndexPath = visibleRows?[visibleRows.count-1] as NSIndexPath?
 		
 		UIView.animateWithDuration(keyboardDuration, delay: 0.0, options: UIViewAnimationOptions.CurveEaseOut, animations: {
@@ -437,7 +437,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 	
 				// Scroll down the table so that the last
 				// visible row remains visible
-				self._tableView.scrollToRowAtIndexPath(lastIndexPath, atScrollPosition: UITableViewScrollPosition.Bottom, animated: true)
+				self._tableView!.scrollToRowAtIndexPath(lastIndexPath, atScrollPosition: UITableViewScrollPosition.Bottom, animated: true)
 			}
 		})
 	}

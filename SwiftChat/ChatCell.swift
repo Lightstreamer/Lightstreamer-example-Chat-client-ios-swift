@@ -20,6 +20,6 @@
 import UIKit
 
 class ChatCell: UITableViewCell {
-	@IBOutlet var messageTextView: UITextView
-	@IBOutlet var originLabel: UILabel
+	@IBOutlet var messageTextView: UITextView?
+	@IBOutlet var originLabel: UILabel?
 }

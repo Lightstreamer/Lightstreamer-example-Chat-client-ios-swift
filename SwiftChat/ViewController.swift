@@ -123,7 +123,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 	
 	func tableView(tableView: UITableView!, cellForRowAtIndexPath indexPath: NSIndexPath!) -> UITableViewCell! {
 		var cell = tableView.dequeueReusableCellWithIdentifier("ChatCell") as? ChatCell
-		if !cell {
+		if cell == nil {
 			cell = ChatCell(style: UITableViewCellStyle.Default, reuseIdentifier: "ChatCell")
 		}
 		
@@ -139,11 +139,11 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 		let timestamp = row["timestamp"]
 		let address = row["address"]
 		
-		if message {
+		if message != nil {
 			cell!.messageTextView!.text = message
 		}
 		
-		if timestamp && address {
+		if (timestamp != nil) && (address != nil) {
 			cell!.originLabel!.text = "From \(address!) at \(timestamp!)"
 		}
 		
@@ -174,7 +174,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 		
 		var color = UIColor.whiteColor()
 
-		if address {
+		if address != nil {
 			
 			// Synchronize access to color list
 			objc_sync_enter(self)
@@ -197,7 +197,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 		objc_sync_exit(self)
 		
 		let message = row["message"]
-		if message {
+		if message != nil {
 			
 			// Compute approximate cell height, we can't
 			// do better than this with APIs available in beta 3
@@ -225,7 +225,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 		NSLog("Connection established (polling: \(polling)), subscribing...")
 
 		// Subscribe to chat adapter, if not already subscribed
-		if !_tableKey {
+		if _tableKey == nil {
 			let tableInfo = LSExtendedTableInfo(items: ["chat_room"], mode: LSModeDistinct, fields: ["message", "timestamp", "IP"], dataAdapter: "CHAT_ROOM", snapshot: true)
 			_tableKey = _client.subscribeTableWithExtendedInfo(tableInfo, delegate: self, useCommandLogic: false)
 		}
@@ -293,7 +293,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 		let timestamp = updateInfo.currentValueOfFieldName("timestamp")
 		let address = updateInfo.currentValueOfFieldName("IP")
 		
-		if !message || !timestamp || !address {
+		if (message == nil) || (timestamp == nil) || (address == nil) {
 			NSLog("Discarding incomplete message")
 			return
 		}
@@ -303,11 +303,11 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 		// Synchronize access to color list
 		objc_sync_enter(self)
 
-		if !_colors[address!] {
+		if _colors[address] == nil {
 			
 			// Generate color from address
 			var addr = in_addr(s_addr: 0)
-			inet_aton(address.bridgeToObjectiveC().UTF8String, &addr)
+			inet_aton((address as NSString).UTF8String, &addr)
 			
 			let b1 = UInt32(addr.s_addr) >> 24
 			let b2 = (UInt32(addr.s_addr) & 0x00ff0000) >> 16
@@ -428,12 +428,12 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 		let lastIndexPath = visibleRows?[visibleRows.count-1] as NSIndexPath?
 		
 		UIView.animateWithDuration(keyboardDuration, delay: 0.0, options: UIViewAnimationOptions.CurveEaseOut, animations: {
-			baseView.frame = CGRectMake(baseView.frame.origin.x, baseView.frame.origin.y, baseView.frame.size.width, baseView.frame.size.height - keyboardFrame.size.height)
+			baseView!.frame = CGRectMake(baseView!.frame.origin.x, baseView!.frame.origin.y, baseView!.frame.size.width, baseView!.frame.size.height - keyboardFrame.size.height)
 		
 		}, completion: {
 			(finished: Bool) in
 
-			if lastIndexPath {
+			if lastIndexPath != nil {
 	
 				// Scroll down the table so that the last
 				// visible row remains visible
@@ -458,7 +458,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 		let keyboardDuration = notification.userInfo[UIKeyboardAnimationDurationUserInfoKey]!.doubleValue
 		
 		UIView.animateWithDuration(keyboardDuration, delay: 0.0, options: UIViewAnimationOptions.CurveEaseOut, animations: {
-			baseView.frame = CGRectMake(baseView.frame.origin.x, baseView.frame.origin.y, baseView.frame.size.width, baseView.frame.size.height + keyboardFrame.size.height)
+			baseView!.frame = CGRectMake(baseView!.frame.origin.x, baseView!.frame.origin.y, baseView!.frame.size.width, baseView!.frame.size.height + keyboardFrame.size.height)
 
 		}, completion: nil)
 	}

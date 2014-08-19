@@ -421,8 +421,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 		// Reducing size of table
 		let baseView = self.view.viewWithTag(CHAT_SUBVIEW_TAG)
 		
-		let keyboardFrame = notification.userInfo[UIKeyboardFrameBeginUserInfoKey]!.CGRectValue()
-		let keyboardDuration = notification.userInfo[UIKeyboardAnimationDurationUserInfoKey]!.doubleValue
+		let keyboardFrame = notification.userInfo![UIKeyboardFrameBeginUserInfoKey]!.CGRectValue()
+		let keyboardDuration = notification.userInfo![UIKeyboardAnimationDurationUserInfoKey]!.doubleValue
 		
 		let visibleRows = _tableView!.indexPathsForVisibleRows()
 		let lastIndexPath = visibleRows?[visibleRows.count-1] as NSIndexPath?
@@ -454,8 +454,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 		// Expanding size of table
 		let baseView = self.view.viewWithTag(CHAT_SUBVIEW_TAG)
 		
-		let keyboardFrame = notification.userInfo[UIKeyboardFrameBeginUserInfoKey]!.CGRectValue()
-		let keyboardDuration = notification.userInfo[UIKeyboardAnimationDurationUserInfoKey]!.doubleValue
+		let keyboardFrame = notification.userInfo![UIKeyboardFrameBeginUserInfoKey]!.CGRectValue()
+		let keyboardDuration = notification.userInfo![UIKeyboardAnimationDurationUserInfoKey]!.doubleValue
 		
 		UIView.animateWithDuration(keyboardDuration, delay: 0.0, options: UIViewAnimationOptions.CurveEaseOut, animations: {
 			baseView!.frame = CGRectMake(baseView!.frame.origin.x, baseView!.frame.origin.y, baseView!.frame.size.width, baseView!.frame.size.height + keyboardFrame.size.height)

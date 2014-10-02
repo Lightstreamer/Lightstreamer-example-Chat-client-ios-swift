@@ -23,9 +23,9 @@ This app uses the **iOS Client API for Lightstreamer** to handle the communicati
 Further details about developing Swift Apps on iOS with Lightstreamer are discussed in [this blog post](http://blog.lightstreamer.com/2014/07/developing-swift-apps-on-ios-with.html).
 
 ## Build
-Binaries for the application are not provided, but a full Xcode 6.0 project specification, ready for a compilation of the demo sources is provided. Please recall that you need a valid iOS Developer Program membership in order to debug or deploy your app on a test device.
+Binaries for the application are not provided, but a full Xcode 6.0 project specification, ready for a compilation of the demo sources is provided. Please recall that you need a valid iOS Developer Program membership to debug or deploy your app on a test device.
 
-To build your own version of the *Basic Chat Demo - iOS Client*, follow these steps.
+To build your own version of the *Basic Chat Demo - iOS Client*, follow these steps:
 
 * Complete this project with the Lighstreamer iOS Client library: 
     * drop into the `Lightstreamer client for iOS/lib` folder of this project the libLightstreamer_iOS_client_64.a file from the `/DOCS-SDKs/sdk_client_ios/lib` of [latest Lightstreamer distribution](http://www.lightstreamer.com/download).
@@ -34,7 +34,7 @@ To build your own version of the *Basic Chat Demo - iOS Client*, follow these st
 ### Deploy
 
 With the current settings, the demo tries to connect to the demo server currently running on Lightstreamer website.
-The demo can be reconfigured and recompiled in order to connect to the local installation of Lightstreamer Server. You just have to change SERVER_URL, as defined in `SwiftChat/ViewController.swift`; a ":port" part can also be added.
+The demo can be reconfigured and recompiled to connect to the local installation of Lightstreamer Server. You just have to change SERVER_URL, as defined in `SwiftChat/ViewController.swift`; a ":port" part can also be added.
 The example requires that the [Lightstreamer - Basic Chat Demo - Java Adapter](https://github.com/Weswit/Lightstreamer-example-Chat-adapter-java) and [LiteralBasedProvider Metadata Adapter](https://github.com/Weswit/Lightstreamer-example-ReusableMetadata-adapter-java#literalbasedprovider-metadata-adapter) have to be deployed in your local Lightstreamer server instance. *The factory configuration of Lightstreamer server already provides the LiteralBasedProvider Metadata Adapter deployed.*
 
 ## See Also

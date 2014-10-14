@@ -26,6 +26,8 @@ build_res
 include_crea_link_esterno.bat
 lib_crea_link_esterno.bat
 Internal StockList Demo for iOS.xcodeproj
+libLightstreamer_iOS_client.a
+libLightstreamer_iOS_client_64.a
 Lightstreamer client for iOS/compile_includes
 Lightstreamer client for iOS/compile_libs
 Lightstreamer client for iOS/include/LightstreamerClient.h
@@ -48,11 +50,14 @@ Lightstreamer client for iOS/include/LSSubscriptionConstraints.h
 Lightstreamer client for iOS/include/LSTableDelegate.h
 Lightstreamer client for iOS/include/LSTableInfo.h
 Lightstreamer client for iOS/include/LSUpdateInfo.h
-libLightstreamer_iOS_client.a
-libLightstreamer_iOS_client_64.a
 Lightstreamer client for iOS/include/LSMPNTokenChangeInfo.h
 Lightstreamer client for iOS/include/LSMPNTokenStatus.h
 Lightstreamer client for iOS/include/LSMPNInfo.h
 Lightstreamer client for iOS/include/LSMPNKey.h
 Lightstreamer client for iOS/include/LSMPNStatus.h
 Lightstreamer client for iOS/include/LSPushClientException.h
+Lightstreamer client for iOS/include/LSMPNSubscriptionStatus.h
+Lightstreamer client for iOS/include/LSMPNDeviceStatus.h
+Lightstreamer client for iOS/include/LSMPNStatusInfo.h
+Lightstreamer client for iOS/include/LSMPNSubscription.h
+

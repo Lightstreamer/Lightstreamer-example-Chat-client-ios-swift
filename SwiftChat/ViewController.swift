@@ -19,7 +19,7 @@
 
 import UIKit
 
-let SERVER_URL = "http://push.lightstreamer.com"
+let SERVER_URL = "http://localhost:8080"
 
 let CHAT_SUBVIEW_TAG = 101
 let TEXT_FIELD_TAG = 102
@@ -38,7 +38,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 	let _queue = dispatch_queue_create("SwiftChat Background Queue", DISPATCH_QUEUE_CONCURRENT)
 	
 	let _client = LSClient()
-	let _connectionInfo = LSConnectionInfo(pushServerURL: SERVER_URL, pushServerControlURL: nil, user: nil, password: nil, adapter: "DEMO")
+	let _connectionInfo = LSConnectionInfo(pushServerURL: SERVER_URL, pushServerControlURL: nil, user: nil, password: nil, adapter: "CHAT")
 	var _tableKey: LSSubscribedTableKey? = nil
 	
 	var _keyboardShown = false
@@ -105,11 +105,11 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 	//////////////////////////////////////////////////////////////////////////
 	// Methods of UITableViewDataSource
 	
-	func numberOfSectionsInTableView(tableView: UITableView!) -> Int {
+	func numberOfSectionsInTableView(tableView: UITableView) -> Int {
 		return 1
 	}
 	
-	func tableView(tableView: UITableView!, numberOfRowsInSection section: Int) -> Int {
+	func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 
 		// Synchronize access to row list
 		objc_sync_enter(self)
@@ -121,7 +121,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 		return rowCount
 	}
 	
-	func tableView(tableView: UITableView!, cellForRowAtIndexPath indexPath: NSIndexPath!) -> UITableViewCell! {
+	func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
 		var cell = tableView.dequeueReusableCellWithIdentifier("ChatCell") as? ChatCell
 		if cell == nil {
 			cell = ChatCell(style: UITableViewCellStyle.Default, reuseIdentifier: "ChatCell")
@@ -147,20 +147,20 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 			cell!.originLabel!.text = "From \(address!) at \(timestamp!)"
 		}
 		
-		return cell
+		return cell!
 	}
 	
 	
 	//////////////////////////////////////////////////////////////////////////
 	// Methods of UITableViewDelegate
 	
-	func tableView(tableView: UITableView!, willSelectRowAtIndexPath indexPath: NSIndexPath!) -> NSIndexPath! {
+	func tableView(tableView: UITableView, willSelectRowAtIndexPath indexPath: NSIndexPath) -> NSIndexPath! {
 
 		// No selection allowed
 		return nil
 	}
 	
-	func tableView(tableView: UITableView!, willDisplayCell cell: UITableViewCell!, forRowAtIndexPath indexPath: NSIndexPath!) {
+	func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
 		
 		// Synchronize access to row list
 		objc_sync_enter(self)
@@ -179,7 +179,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 			// Synchronize access to color list
 			objc_sync_enter(self)
 			
-			color = _colors[address!]
+			color = _colors[address!]!
 			
 			objc_sync_exit(self)
 		}
@@ -187,7 +187,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 		cell.backgroundColor = color
 	}
 	
-	func tableView(tableView: UITableView!, heightForRowAtIndexPath indexPath: NSIndexPath!) -> CGFloat {
+	func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
 
 		// Synchronize access to row list
 		objc_sync_enter(self)
@@ -346,9 +346,9 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 				objc_sync_exit(self)
 				
 				// If the table is positioned on last row, scroll with new message
-				let visibleRows = self._tableView!.indexPathsForVisibleRows()
-				if visibleRows.count > 0 {
-					let lastIndexPath = visibleRows[visibleRows.count-1] as NSIndexPath
+				let visibleRows = self._tableView!.indexPathsForVisibleRows() as [NSIndexPath]?
+				if (visibleRows != nil) && visibleRows!.count > 0 {
+					let lastIndexPath = visibleRows![visibleRows!.count-1] as NSIndexPath
 					if lastIndexPath.row == rowCount-2 {
 						self._tableView!.scrollToRowAtIndexPath(NSIndexPath(forRow: rowCount-1, inSection: 0), atScrollPosition: UITableViewScrollPosition.Bottom, animated: true)
 					}
@@ -388,7 +388,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 	//////////////////////////////////////////////////////////////////////////
 	// Methods of UITextFieldDelegate
 	
-	func textFieldShouldReturn(textField: UITextField!) -> Bool {
+	func textFieldShouldReturn(textField: UITextField) -> Bool {
 		
 		// Get the message text
 		let message = textField.text
@@ -424,8 +424,12 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 		let keyboardFrame = notification.userInfo![UIKeyboardFrameBeginUserInfoKey]!.CGRectValue()
 		let keyboardDuration = notification.userInfo![UIKeyboardAnimationDurationUserInfoKey]!.doubleValue
 		
-		let visibleRows = _tableView!.indexPathsForVisibleRows()
-		let lastIndexPath = visibleRows?[visibleRows.count-1] as NSIndexPath?
+		let visibleRows = _tableView!.indexPathsForVisibleRows() as [NSIndexPath]?
+		var lastIndexPath : NSIndexPath? = nil
+
+		if (visibleRows != nil) && visibleRows!.count > 0 {
+			lastIndexPath = visibleRows![visibleRows!.count-1] as NSIndexPath
+		}
 		
 		UIView.animateWithDuration(keyboardDuration, delay: 0.0, options: UIViewAnimationOptions.CurveEaseOut, animations: {
 			baseView!.frame = CGRectMake(baseView!.frame.origin.x, baseView!.frame.origin.y, baseView!.frame.size.width, baseView!.frame.size.height - keyboardFrame.size.height)
@@ -437,7 +441,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 	
 				// Scroll down the table so that the last
 				// visible row remains visible
-				self._tableView!.scrollToRowAtIndexPath(lastIndexPath, atScrollPosition: UITableViewScrollPosition.Bottom, animated: true)
+				self._tableView!.scrollToRowAtIndexPath(lastIndexPath!, atScrollPosition: UITableViewScrollPosition.Bottom, animated: true)
 			}
 		})
 	}

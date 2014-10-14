@@ -1,6 +1,6 @@
 # Lightstreamer - Basic Chat Demo - iOS Client - Swift
 
-<!-- START DESCRIPTION lightstreamer-example-Chat-client-ios-swift -->
+<!-- START DESCRIPTION lightstreamer-example-chat-client-ios-swift -->
 
 The *Chat Demo* is a very simple chat application based on Lightstreamer.
 

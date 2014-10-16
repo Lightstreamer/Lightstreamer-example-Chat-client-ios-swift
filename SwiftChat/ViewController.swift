@@ -41,6 +41,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 	let _connectionInfo = LSConnectionInfo(pushServerURL: SERVER_URL, pushServerControlURL: nil, user: nil, password: nil, adapter: "CHAT")
 	var _tableKey: LSSubscribedTableKey? = nil
 	
+	let _formatter = NSDateFormatter()
+	
 	var _keyboardShown = false
 	var _snapshotEnded = false
 	
@@ -52,9 +54,20 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 	
 	
 	//////////////////////////////////////////////////////////////////////////
+	// Constructor
+	
+	required init(coder aDecoder: NSCoder) {
+		super.init(coder: aDecoder)
+
+		// Initialize the timestamp formatter
+		_formatter.dateFormat = "dd/MM/YYYY HH:mm:ss"
+	}
+
+	
+	//////////////////////////////////////////////////////////////////////////
 	// Methods of UIViewController
 
-	override func viewWillAppear(animated: Bool)  {
+	override func viewWillAppear(animated: Bool) {
 		
 		// Register for keyboard notifications
 		NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillShow:", name: UIKeyboardWillShowNotification, object: nil)
@@ -226,7 +239,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 
 		// Subscribe to chat adapter, if not already subscribed
 		if _tableKey == nil {
-			let tableInfo = LSExtendedTableInfo(items: ["chat_room"], mode: LSModeDistinct, fields: ["message", "timestamp", "IP"], dataAdapter: "CHAT_ROOM", snapshot: true)
+			let tableInfo = LSExtendedTableInfo(items: ["chat_room"], mode: LSModeDistinct, fields: ["message", "raw_timestamp", "IP"], dataAdapter: "CHAT_ROOM", snapshot: true)
 			_tableKey = _client.subscribeTableWithExtendedInfo(tableInfo, delegate: self, useCommandLogic: false)
 		}
 	}
@@ -290,15 +303,20 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 	
 	func table(tableKey: LSSubscribedTableKey!, itemPosition: CInt, itemName: String?, didUpdateWithInfo updateInfo: LSUpdateInfo!) {
 		let message = updateInfo.currentValueOfFieldName("message")
-		let timestamp = updateInfo.currentValueOfFieldName("timestamp")
+		let rawTimestamp = updateInfo.currentValueOfFieldName("raw_timestamp")
 		let address = updateInfo.currentValueOfFieldName("IP")
 		
-		if (message == nil) || (timestamp == nil) || (address == nil) {
+		if (message == nil) || (rawTimestamp == nil) || (address == nil) {
 			NSLog("Discarding incomplete message")
 			return
 		}
 		
-		NSLog("Received message from \(address!) at \(timestamp!)")
+		// Format the timestamp
+		let timeInterval = (rawTimestamp! as NSString).doubleValue / 1000.0
+		let date = NSDate(timeIntervalSince1970: timeInterval)
+		let timestamp = _formatter.stringFromDate(date)
+		
+		NSLog("Received message from \(address!) at \(timestamp)")
 		
 		// Synchronize access to color list
 		objc_sync_enter(self)
@@ -323,7 +341,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 		
 		objc_sync_exit(self)
 		
-		let row = ["message": message!, "timestamp": timestamp!, "address": address!]
+		let row = ["message": message!, "timestamp": timestamp, "address": address!]
 		
 		// Synchronize access to row list
 		objc_sync_enter(self)

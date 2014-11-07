@@ -110,8 +110,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 		NSLog("Opening Lightstreamer home page URL...")
 		
 		// Open the LS page
-		let url = NSURL.URLWithString("http://www.lightstreamer.com/")
-		UIApplication.sharedApplication().openURL(url)
+		let url = NSURL(string: "http://www.lightstreamer.com/")
+		UIApplication.sharedApplication().openURL(url!)
 	}
 	
 	

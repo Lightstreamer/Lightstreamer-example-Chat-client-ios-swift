@@ -16,30 +16,6 @@
 		8C90F0A4196AA9FA00284BFF /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C90F0A3196AA9FA00284BFF /* SystemConfiguration.framework */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		8C3C6987195592240048C518 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 8C3C696C195592240048C518 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 8C3C6973195592240048C518;
-			remoteInfo = SwiftChat;
-		};
-		8C90F09C196AA74900284BFF /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 8C3C696C195592240048C518 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 8C3C6973195592240048C518;
-			remoteInfo = SwiftChat;
-		};
-		8C90F09E196AA74900284BFF /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 8C3C696C195592240048C518 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 8C3C6973195592240048C518;
-			remoteInfo = SwiftChat;
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXFileReference section */
 		8C3C6974195592240048C518 /* SwiftChat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftChat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C3C6978195592240048C518 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -47,7 +23,6 @@
 		8C3C697B195592240048C518 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		8C3C697E195592240048C518 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		8C3C6980195592240048C518 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		8C3C6986195592240048C518 /* SwiftChatTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftChatTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C3C6999195592D30048C518 /* LightstreamerClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LightstreamerClient.h; sourceTree = "<group>"; };
 		8C3C699A195592D30048C518 /* LSClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSClient.h; sourceTree = "<group>"; };
 		8C3C699B195592D30048C518 /* LSConnectionConstraints.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSConnectionConstraints.h; sourceTree = "<group>"; };
@@ -91,13 +66,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		8C3C6983195592240048C518 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -115,7 +83,6 @@
 			isa = PBXGroup;
 			children = (
 				8C3C6974195592240048C518 /* SwiftChat.app */,
-				8C3C6986195592240048C518 /* SwiftChatTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -213,26 +180,6 @@
 			productReference = 8C3C6974195592240048C518 /* SwiftChat.app */;
 			productType = "com.apple.product-type.application";
 		};
-		8C3C6985195592240048C518 /* SwiftChatTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 8C3C6993195592240048C518 /* Build configuration list for PBXNativeTarget "SwiftChatTests" */;
-			buildPhases = (
-				8C3C6982195592240048C518 /* Sources */,
-				8C3C6983195592240048C518 /* Frameworks */,
-				8C3C6984195592240048C518 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				8C3C6988195592240048C518 /* PBXTargetDependency */,
-				8C90F09D196AA74900284BFF /* PBXTargetDependency */,
-				8C90F09F196AA74900284BFF /* PBXTargetDependency */,
-			);
-			name = SwiftChatTests;
-			productName = SwiftChatTests;
-			productReference = 8C3C6986195592240048C518 /* SwiftChatTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -245,10 +192,6 @@
 					8C3C6973195592240048C518 = {
 						CreatedOnToolsVersion = 6.0;
 						DevelopmentTeam = 7PGFJN8WH5;
-					};
-					8C3C6985195592240048C518 = {
-						CreatedOnToolsVersion = 6.0;
-						TestTargetID = 8C3C6973195592240048C518;
 					};
 				};
 			};
@@ -266,7 +209,6 @@
 			projectRoot = "";
 			targets = (
 				8C3C6973195592240048C518 /* SwiftChat */,
-				8C3C6985195592240048C518 /* SwiftChatTests */,
 			);
 		};
 /* End PBXProject section */
@@ -278,13 +220,6 @@
 			files = (
 				8C8C0F5F196C29050069601A /* Main.storyboard in Resources */,
 				8C3C6981195592240048C518 /* Images.xcassets in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		8C3C6984195592240048C518 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -301,32 +236,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		8C3C6982195592240048C518 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		8C3C6988195592240048C518 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 8C3C6973195592240048C518 /* SwiftChat */;
-			targetProxy = 8C3C6987195592240048C518 /* PBXContainerItemProxy */;
-		};
-		8C90F09D196AA74900284BFF /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 8C3C6973195592240048C518 /* SwiftChat */;
-			targetProxy = 8C90F09C196AA74900284BFF /* PBXContainerItemProxy */;
-		};
-		8C90F09F196AA74900284BFF /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 8C3C6973195592240048C518 /* SwiftChat */;
-			targetProxy = 8C90F09E196AA74900284BFF /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		8C3C697D195592240048C518 /* Main.storyboard */ = {
@@ -438,6 +348,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "fa94fd3a-1dbb-417e-8a3b-eb5f6846f357";
 				SWIFT_OBJC_BRIDGING_HEADER = "SwiftChat/SwiftChat-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -449,49 +360,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Weswit Srl (7PGFJN8WH5)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				INFOPLIST_FILE = SwiftChat/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "355433a1-776d-41e0-894b-de12222c7f4f";
+				PROVISIONING_PROFILE = "fa94fd3a-1dbb-417e-8a3b-eb5f6846f357";
 				SWIFT_OBJC_BRIDGING_HEADER = "SwiftChat/SwiftChat-Bridging-Header.h";
-			};
-			name = Release;
-		};
-		8C3C6994195592240048C518 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/SwiftChat.app/SwiftChat";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = SwiftChatTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				METAL_ENABLE_DEBUG_INFO = YES;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-			};
-			name = Debug;
-		};
-		8C3C6995195592240048C518 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/SwiftChat.app/SwiftChat";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = SwiftChatTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				METAL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
 			};
 			name = Release;
 		};
@@ -512,15 +387,6 @@
 			buildConfigurations = (
 				8C3C6991195592240048C518 /* Debug */,
 				8C3C6992195592240048C518 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		8C3C6993195592240048C518 /* Build configuration list for PBXNativeTarget "SwiftChatTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				8C3C6994195592240048C518 /* Debug */,
-				8C3C6995195592240048C518 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

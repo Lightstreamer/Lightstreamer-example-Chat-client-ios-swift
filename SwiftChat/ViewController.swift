@@ -19,7 +19,16 @@
 
 import UIKit
 
+// Configuration for local installation
 let SERVER_URL = "http://localhost:8080"
+let ADAPTER_SET = "CHAT"
+let DATA_ADAPTER = "CHAT_ROOM"
+
+/* Configuration for online demo server
+let SERVER_URL = "http://push.lightstreamer.com"
+let ADAPTER_SET = "DEMO"
+let DATA_ADAPTER = "CHAT_ROOM"
+*/
 
 let CHAT_SUBVIEW_TAG = 101
 let TEXT_FIELD_TAG = 102
@@ -38,7 +47,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 	let _queue = dispatch_queue_create("SwiftChat Background Queue", DISPATCH_QUEUE_CONCURRENT)
 	
 	let _client = LSClient()
-	let _connectionInfo = LSConnectionInfo(pushServerURL: SERVER_URL, pushServerControlURL: nil, user: nil, password: nil, adapter: "CHAT")
+	let _connectionInfo = LSConnectionInfo(pushServerURL: SERVER_URL, pushServerControlURL: nil, user: nil, password: nil, adapter: ADAPTER_SET)
 	var _tableKey: LSSubscribedTableKey? = nil
 	
 	let _formatter = NSDateFormatter()
@@ -77,7 +86,20 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 		
 		// Start LS connection in background
 		dispatch_async(_queue) {
-			self._client.openConnectionWithInfo(self._connectionInfo, delegate: self)
+			var error : NSError?
+			self._client.openConnectionWithInfo(self._connectionInfo, delegate: self, error: &error)
+			
+			if error != nil {
+				NSLog("Error while connecting: \(error!.domain), code: \(error!.code), user info: \(error!.userInfo)")
+				
+				dispatch_async(dispatch_get_main_queue()) {
+					let alert = UIAlertView()
+					alert.title = "Error"
+					alert.message = "Could not connect due to error \(error!.domain), code: \(error!.code)"
+					alert.addButtonWithTitle("Ok")
+					alert.show()
+				}
+			}
 		}
 	}
 	
@@ -102,7 +124,20 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 		
 		// Send the message in background
 		dispatch_async(_queue) {
-			self._client.sendMessage("CHAT|" + message)
+			var error : NSError?
+			self._client.sendMessage("CHAT|\(message)", error: &error)
+			
+			if error != nil {
+				NSLog("Error while sending message: \(error!.domain), code: \(error!.code), user info: \(error!.userInfo)")
+				
+				dispatch_async(dispatch_get_main_queue()) {
+					let alert = UIAlertView()
+					alert.title = "Error"
+					alert.message = "Could not send message due to error \(error!.domain), code: \(error!.code)"
+					alert.addButtonWithTitle("Ok")
+					alert.show()
+				}
+			}
 		}
 	}
 	
@@ -239,8 +274,22 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 
 		// Subscribe to chat adapter, if not already subscribed
 		if _tableKey == nil {
-			let tableInfo = LSExtendedTableInfo(items: ["chat_room"], mode: LSModeDistinct, fields: ["message", "raw_timestamp", "IP"], dataAdapter: "CHAT_ROOM", snapshot: true)
-			_tableKey = _client.subscribeTableWithExtendedInfo(tableInfo, delegate: self, useCommandLogic: false)
+			let tableInfo = LSExtendedTableInfo(items: ["chat_room"], mode: LSModeDistinct, fields: ["message", "raw_timestamp", "IP"], dataAdapter: DATA_ADAPTER, snapshot: true)
+			
+			var error : NSError?
+			_tableKey = _client.subscribeTableWithExtendedInfo(tableInfo, delegate: self, useCommandLogic: false, error: &error)
+			
+			if error != nil {
+				NSLog("Error while subscribing table: \(error!.domain), code: \(error!.code), user info: \(error!.userInfo)")
+				
+				dispatch_async(dispatch_get_main_queue()) {
+					let alert = UIAlertView()
+					alert.title = "Error"
+					alert.message = "Could not subscribe to table due to error \(error!.domain), code: \(error!.code)"
+					alert.addButtonWithTitle("Ok")
+					alert.show()
+				}
+			}
 		}
 	}
 	

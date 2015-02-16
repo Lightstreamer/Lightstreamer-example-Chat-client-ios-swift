@@ -90,12 +90,12 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 			self._client.openConnectionWithInfo(self._connectionInfo, delegate: self, error: &error)
 			
 			if error != nil {
-				NSLog("Error while connecting: \(error!.domain), code: \(error!.code), user info: \(error!.userInfo)")
+				NSLog("Error while connecting: \(error!.userInfo![NSLocalizedFailureReasonErrorKey]!)")
 				
 				dispatch_async(dispatch_get_main_queue()) {
 					let alert = UIAlertView()
-					alert.title = "Error"
-					alert.message = "Could not connect due to error \(error!.domain), code: \(error!.code)"
+					alert.title = "Error while connecting"
+					alert.message = "\(error!.userInfo![NSLocalizedFailureReasonErrorKey]!)"
 					alert.addButtonWithTitle("Ok")
 					alert.show()
 				}
@@ -128,12 +128,12 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 			self._client.sendMessage("CHAT|\(message)", error: &error)
 			
 			if error != nil {
-				NSLog("Error while sending message: \(error!.domain), code: \(error!.code), user info: \(error!.userInfo)")
+				NSLog("Error while sending message: \(error!.userInfo![NSLocalizedFailureReasonErrorKey]!)")
 				
 				dispatch_async(dispatch_get_main_queue()) {
 					let alert = UIAlertView()
-					alert.title = "Error"
-					alert.message = "Could not send message due to error \(error!.domain), code: \(error!.code)"
+					alert.title = "Error while sending message"
+					alert.message = "\(error!.userInfo![NSLocalizedFailureReasonErrorKey]!)"
 					alert.addButtonWithTitle("Ok")
 					alert.show()
 				}
@@ -280,12 +280,12 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 			_tableKey = _client.subscribeTableWithExtendedInfo(tableInfo, delegate: self, useCommandLogic: false, error: &error)
 			
 			if error != nil {
-				NSLog("Error while subscribing table: \(error!.domain), code: \(error!.code), user info: \(error!.userInfo)")
+				NSLog("Error while subscribing table: \(error!.userInfo![NSLocalizedFailureReasonErrorKey]!)")
 				
 				dispatch_async(dispatch_get_main_queue()) {
 					let alert = UIAlertView()
-					alert.title = "Error"
-					alert.message = "Could not subscribe to table due to error \(error!.domain), code: \(error!.code)"
+					alert.title = "Error while subscribing table"
+					alert.message = "\(error!.userInfo![NSLocalizedFailureReasonErrorKey]!)"
 					alert.addButtonWithTitle("Ok")
 					alert.show()
 				}

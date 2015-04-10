@@ -17,6 +17,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8C28CD891AD7D638009294FE /* LSLogDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSLogDelegate.h; sourceTree = "<group>"; };
+		8C28CD8A1AD7D638009294FE /* LSMPNDeviceStatus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSMPNDeviceStatus.h; sourceTree = "<group>"; };
+		8C28CD8B1AD7D638009294FE /* LSMPNStatusInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSMPNStatusInfo.h; sourceTree = "<group>"; };
+		8C28CD8C1AD7D638009294FE /* LSMPNSubscription.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSMPNSubscription.h; sourceTree = "<group>"; };
+		8C28CD8D1AD7D638009294FE /* LSMPNSubscriptionStatus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSMPNSubscriptionStatus.h; sourceTree = "<group>"; };
 		8C3C6974195592240048C518 /* SwiftChat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftChat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C3C6978195592240048C518 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8C3C6979195592240048C518 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -37,7 +42,6 @@
 		8C3C69A4195592D30048C518 /* LSMode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSMode.h; sourceTree = "<group>"; };
 		8C3C69A5195592D30048C518 /* LSMPNInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSMPNInfo.h; sourceTree = "<group>"; };
 		8C3C69A6195592D30048C518 /* LSMPNKey.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSMPNKey.h; sourceTree = "<group>"; };
-		8C3C69A7195592D30048C518 /* LSMPNStatus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSMPNStatus.h; sourceTree = "<group>"; };
 		8C3C69A8195592D30048C518 /* LSMPNTokenChangeInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSMPNTokenChangeInfo.h; sourceTree = "<group>"; };
 		8C3C69A9195592D30048C518 /* LSMPNTokenStatus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSMPNTokenStatus.h; sourceTree = "<group>"; };
 		8C3C69AA195592D30048C518 /* LSPushClientException.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSPushClientException.h; sourceTree = "<group>"; };
@@ -49,7 +53,6 @@
 		8C3C69B0195592D30048C518 /* LSTableDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSTableDelegate.h; sourceTree = "<group>"; };
 		8C3C69B1195592D30048C518 /* LSTableInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSTableInfo.h; sourceTree = "<group>"; };
 		8C3C69B2195592D30048C518 /* LSUpdateInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSUpdateInfo.h; sourceTree = "<group>"; };
-		8C3C69B4195592D30048C518 /* libLightstreamer_iOS_client.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libLightstreamer_iOS_client.a; sourceTree = "<group>"; };
 		8C3C69B5195592D30048C518 /* libLightstreamer_iOS_client_64.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libLightstreamer_iOS_client_64.a; sourceTree = "<group>"; };
 		8C8C0F5D196BEB340069601A /* ChatCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatCell.swift; sourceTree = "<group>"; };
 		8C90F0A0196AA97400284BFF /* SwiftChat-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SwiftChat-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -130,14 +133,18 @@
 				8C3C699F195592D30048C518 /* LSException.h */,
 				8C3C69A0195592D30048C518 /* LSExtendedTableInfo.h */,
 				8C3C69A1195592D30048C518 /* LSLog.h */,
+				8C28CD891AD7D638009294FE /* LSLogDelegate.h */,
 				8C3C69A2195592D30048C518 /* LSMessageDelegate.h */,
 				8C3C69A3195592D30048C518 /* LSMessageInfo.h */,
 				8C3C69A4195592D30048C518 /* LSMode.h */,
 				8C3C69A5195592D30048C518 /* LSMPNInfo.h */,
 				8C3C69A6195592D30048C518 /* LSMPNKey.h */,
-				8C3C69A7195592D30048C518 /* LSMPNStatus.h */,
 				8C3C69A8195592D30048C518 /* LSMPNTokenChangeInfo.h */,
 				8C3C69A9195592D30048C518 /* LSMPNTokenStatus.h */,
+				8C28CD8A1AD7D638009294FE /* LSMPNDeviceStatus.h */,
+				8C28CD8B1AD7D638009294FE /* LSMPNStatusInfo.h */,
+				8C28CD8C1AD7D638009294FE /* LSMPNSubscription.h */,
+				8C28CD8D1AD7D638009294FE /* LSMPNSubscriptionStatus.h */,
 				8C3C69AA195592D30048C518 /* LSPushClientException.h */,
 				8C3C69AB195592D30048C518 /* LSPushConnectionException.h */,
 				8C3C69AC195592D30048C518 /* LSPushServerException.h */,
@@ -154,7 +161,6 @@
 		8C3C69B3195592D30048C518 /* lib */ = {
 			isa = PBXGroup;
 			children = (
-				8C3C69B4195592D30048C518 /* libLightstreamer_iOS_client.a */,
 				8C3C69B5195592D30048C518 /* libLightstreamer_iOS_client_64.a */,
 			);
 			path = lib;
@@ -348,7 +354,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "fa94fd3a-1dbb-417e-8a3b-eb5f6846f357";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "SwiftChat/SwiftChat-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -365,7 +371,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "fa94fd3a-1dbb-417e-8a3b-eb5f6846f357";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "SwiftChat/SwiftChat-Bridging-Header.h";
 			};
 			name = Release;

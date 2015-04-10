@@ -202,7 +202,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 	//////////////////////////////////////////////////////////////////////////
 	// Methods of UITableViewDelegate
 	
-	func tableView(tableView: UITableView, willSelectRowAtIndexPath indexPath: NSIndexPath) -> NSIndexPath! {
+	func tableView(tableView: UITableView, willSelectRowAtIndexPath indexPath: NSIndexPath) -> NSIndexPath? {
 
 		// No selection allowed
 		return nil
@@ -249,7 +249,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 			
 			// Compute approximate cell height, we can't
 			// do better than this with APIs available in beta 3
-			let length = countElements(message!)
+			let length = count(message!)
 
 			var lines = (length / AVERAGE_LINE_LENGTH)
 			if length % AVERAGE_LINE_LENGTH > 0 {
@@ -293,7 +293,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 		}
 	}
 	
-	func clientConnection(client: LSClient!, didEndWithCause cause: Int) {
+	func clientConnection(client: LSClient!, didEndWithCause cause: Int32) {
 		NSLog("Connection ended, reconnecting...")
 		
 		// Clear subscription status
@@ -413,7 +413,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 				objc_sync_exit(self)
 				
 				// If the table is positioned on last row, scroll with new message
-				let visibleRows = self._tableView!.indexPathsForVisibleRows() as [NSIndexPath]?
+				let visibleRows = self._tableView!.indexPathsForVisibleRows() as! [NSIndexPath]?
 				if (visibleRows != nil) && visibleRows!.count > 0 {
 					let lastIndexPath = visibleRows![visibleRows!.count-1] as NSIndexPath
 					if lastIndexPath.row == rowCount-2 {
@@ -424,7 +424,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 		}
 	}
 	
-	func table(tableKey: LSSubscribedTableKey, didEndSnapshotForItemPosition itemPosition:Int, itemName: String) {
+	func table(tableKey: LSSubscribedTableKey!, didEndSnapshotForItemPosition itemPosition: Int32, itemName: String!) {
 		NSLog("Snapshot ended")
 		
 		_snapshotEnded = true
@@ -491,7 +491,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 		let keyboardFrame = notification.userInfo![UIKeyboardFrameBeginUserInfoKey]!.CGRectValue()
 		let keyboardDuration = notification.userInfo![UIKeyboardAnimationDurationUserInfoKey]!.doubleValue
 		
-		let visibleRows = _tableView!.indexPathsForVisibleRows() as [NSIndexPath]?
+		let visibleRows = _tableView!.indexPathsForVisibleRows() as! [NSIndexPath]?
 		var lastIndexPath : NSIndexPath? = nil
 
 		if (visibleRows != nil) && visibleRows!.count > 0 {

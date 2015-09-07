@@ -40,15 +40,12 @@ let LINE_HEIGHT: CGFloat = 20.0
 let DEFAULT_CELL_HEIGHT: CGFloat = 77.0
 
 
-class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate, LSConnectionDelegate, LSTableDelegate {
+class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate, LSClientDelegate, LSSubscriptionDelegate {
 	var _rows = [[String: String]]() // Array<Dictionary<String, String>>
 	var _colors = [String: UIColor]() // Dictionary<String, UIColor>
 
-	let _queue = dispatch_queue_create("SwiftChat Background Queue", DISPATCH_QUEUE_CONCURRENT)
-	
-	let _client = LSClient()
-	let _connectionInfo = LSConnectionInfo(pushServerURL: SERVER_URL, pushServerControlURL: nil, user: nil, password: nil, adapter: ADAPTER_SET)
-	var _tableKey: LSSubscribedTableKey? = nil
+	let _client = LSLightstreamerClient(serverAddress: SERVER_URL, adapterSet: ADAPTER_SET)
+	let _subscription = LSSubscription(subscriptionMode: "DISTINCT", item: "chat_room", fields: ["message", "raw_timestamp", "IP"])
 	
 	let _formatter = NSDateFormatter()
 	
@@ -67,9 +64,12 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 	
 	required init(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)
-
+		
 		// Initialize the timestamp formatter
 		_formatter.dateFormat = "dd/MM/YYYY HH:mm:ss"
+		
+		// Log the lib version
+		NSLog("LS Client lib version: \(LSLightstreamerClient.LIB_VERSION())");
 	}
 
 	
@@ -84,23 +84,18 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 
 		NSLog("Connecting...")
 		
-		// Start LS connection in background
-		dispatch_async(_queue) {
-			var error : NSError?
-			self._client.openConnectionWithInfo(self._connectionInfo, delegate: self, error: &error)
-			
-			if error != nil {
-				NSLog("Error while connecting: \(error!.userInfo![NSLocalizedFailureReasonErrorKey]!)")
-				
-				dispatch_async(dispatch_get_main_queue()) {
-					let alert = UIAlertView()
-					alert.title = "Error while connecting"
-					alert.message = "\(error!.userInfo![NSLocalizedFailureReasonErrorKey]!)"
-					alert.addButtonWithTitle("Ok")
-					alert.show()
-				}
-			}
-		}
+		// Add delegate
+		self._client.addDelegate(self)
+		
+		// Start LS connection (executes in background)
+		self._client.connect()
+		
+		// Start subscription (executes in background)
+		self._subscription.dataAdapter = DATA_ADAPTER
+		self._subscription.requestedSnapshot = "yes"
+		self._subscription.addDelegate(self)
+		self._client.subscribe(_subscription)
+		
 	}
 	
 	override func viewWillDisappear(animated: Bool) {
@@ -122,23 +117,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 		
 		NSLog("Sending message \"\(message)\"...")
 		
-		// Send the message in background
-		dispatch_async(_queue) {
-			var error : NSError?
-			self._client.sendMessage("CHAT|\(message)", error: &error)
-			
-			if error != nil {
-				NSLog("Error while sending message: \(error!.userInfo![NSLocalizedFailureReasonErrorKey]!)")
-				
-				dispatch_async(dispatch_get_main_queue()) {
-					let alert = UIAlertView()
-					alert.title = "Error while sending message"
-					alert.message = "\(error!.userInfo![NSLocalizedFailureReasonErrorKey]!)"
-					alert.addButtonWithTitle("Ok")
-					alert.show()
-				}
-			}
-		}
+		// Send the message (executes in background)
+		self._client.sendMessage("CHAT|\(message)")
 	}
 	
 	@IBAction func logoTapped() {
@@ -267,61 +247,30 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 	
 	
 	//////////////////////////////////////////////////////////////////////////
-	// Methods of LSConnectionDelegate
+	// Methods of LSClientDelegate
+	
+	func client(client: LSLightstreamerClient, didChangeProperty property: String) {
+		NSLog("LS Client property did change (property: \(property))")
+	}
+	
+	func client(client: LSLightstreamerClient, didChangeStatus status: String) {
+		NSLog("LS Client connection status did change (status: \(status))")
 
-	func clientConnection(client: LSClient!, didStartSessionWithPolling polling: Bool) {
-		NSLog("Connection established (polling: \(polling)), subscribing...")
-
-		// Subscribe to chat adapter, if not already subscribed
-		if _tableKey == nil {
-			let tableInfo = LSExtendedTableInfo(items: ["chat_room"], mode: LSModeDistinct, fields: ["message", "raw_timestamp", "IP"], dataAdapter: DATA_ADAPTER, snapshot: true)
+		if (status.hasPrefix("DISCONNECTED")) {
 			
-			var error : NSError?
-			_tableKey = _client.subscribeTableWithExtendedInfo(tableInfo, delegate: self, useCommandLogic: false, error: &error)
+			// Handle transient connection failure
+			self.handleDisconnection()
 			
-			if error != nil {
-				NSLog("Error while subscribing table: \(error!.userInfo![NSLocalizedFailureReasonErrorKey]!)")
+			if (status == "DISCONNECTED") {
 				
-				dispatch_async(dispatch_get_main_queue()) {
-					let alert = UIAlertView()
-					alert.title = "Error while subscribing table"
-					alert.message = "\(error!.userInfo![NSLocalizedFailureReasonErrorKey]!)"
-					alert.addButtonWithTitle("Ok")
-					alert.show()
-				}
+				// Restart LS connection (executes in background)
+				self._client.connect()
 			}
 		}
 	}
 	
-	func clientConnection(client: LSClient!, didEndWithCause cause: Int32) {
-		NSLog("Connection ended, reconnecting...")
-		
-		// Clear subscription status
-		_tableKey = nil
-		
-		// Handle transient connection failure
-		self.handleDisconnection()
-
-		// Restart LS connection in background
-		dispatch_async(_queue) {
-			self._client.openConnectionWithInfo(self._connectionInfo, delegate: self)
-		}
-	}
-	
-	func clientConnection(client: LSClient!, didReceiveConnectionFailure failure: LSPushConnectionException!) {
-		NSLog("Connection failed with reason \"\(failure.reason)\", reconnecting...")
-		
-		// Handle transient connection failure, the client library 
-		// will reconnect and resubscribe automatically
-		self.handleDisconnection()
-	}
-	
-	func clientConnection(client: LSClient!, didReceiveServerFailure failure: LSPushServerException!) {
-		NSLog("Connection failed with reason \"\(failure.reason)\", reconnecting...")
-		
-		// Handle transient connection failure, the client library
-		// will reconnect and resubscribe automatically
-		self.handleDisconnection()
+	func client(client: LSLightstreamerClient, didReceiveServerError errorCode: Int, withMessage errorMessage: String?) {
+		NSLog("LS Client connection did receive server error (code: \(errorCode), message: \(errorMessage))")
 	}
 	
 	
@@ -348,12 +297,41 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 	
 
 	//////////////////////////////////////////////////////////////////////////
-	// Methods of LSTableDelegate
+	// Methods of LSSubscriptionDelegate
 	
-	func table(tableKey: LSSubscribedTableKey!, itemPosition: CInt, itemName: String?, didUpdateWithInfo updateInfo: LSUpdateInfo!) {
-		let message = updateInfo.currentValueOfFieldName("message")
-		let rawTimestamp = updateInfo.currentValueOfFieldName("raw_timestamp")
-		let address = updateInfo.currentValueOfFieldName("IP")
+	func subscription(subscription: LSSubscription, didClearSnapshotForItemName itemName: String?, itemPos: UInt) {}
+	
+	func subscription(subscription: LSSubscription, didEndSnapshotForItemName itemName: String?, itemPos: UInt) {
+		NSLog("LS Subscription snapshot did end")
+		
+		_snapshotEnded = true
+		
+		dispatch_async(dispatch_get_main_queue()) {
+			
+			// Synchronize access to row list
+			objc_sync_enter(self)
+			
+			// Notify table view to reload cells
+			self._tableView!.reloadData()
+			
+			let rowCount = self._rows.count
+			
+			objc_sync_exit(self)
+			
+			// Scroll to bottom
+			if rowCount > 0 {
+				self._tableView!.scrollToRowAtIndexPath(NSIndexPath(forRow: rowCount-1, inSection: 0), atScrollPosition: UITableViewScrollPosition.Bottom, animated: false)
+			}
+			
+			// Hide wait view
+			self._waitView!.hidden = true
+		}
+	}
+	
+	func subscription(subscription: LSSubscription, didUpdateItem itemUpdate: LSItemUpdate) {
+		let message = itemUpdate.valueWithFieldName("message")
+		let rawTimestamp = itemUpdate.valueWithFieldName("raw_timestamp")
+		let address = itemUpdate.valueWithFieldName("IP")
 		
 		if (message == nil) || (rawTimestamp == nil) || (address == nil) {
 			NSLog("Discarding incomplete message")
@@ -369,12 +347,12 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 		
 		// Synchronize access to color list
 		objc_sync_enter(self)
-
-		if _colors[address] == nil {
+		
+		if _colors[address!] == nil {
 			
 			// Generate color from address
 			var addr = in_addr(s_addr: 0)
-			inet_aton((address as NSString).UTF8String, &addr)
+			inet_aton((address! as NSString).UTF8String, &addr)
 			
 			let b1 = UInt32(addr.s_addr) >> 24
 			let b2 = (UInt32(addr.s_addr) & 0x00ff0000) >> 16
@@ -394,14 +372,14 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 		
 		// Synchronize access to row list
 		objc_sync_enter(self)
-
+		
 		_rows.append(row)
-
+		
 		objc_sync_exit(self)
 		
 		if _snapshotEnded {
 			dispatch_async(dispatch_get_main_queue()) {
-
+				
 				// Synchronize access to row list
 				objc_sync_enter(self)
 				
@@ -424,31 +402,20 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 		}
 	}
 	
-	func table(tableKey: LSSubscribedTableKey!, didEndSnapshotForItemPosition itemPosition: Int32, itemName: String!) {
-		NSLog("Snapshot ended")
-		
-		_snapshotEnded = true
-		
-		dispatch_async(dispatch_get_main_queue()) {
-			
-			// Synchronize access to row list
-			objc_sync_enter(self)
-			
-			// Notify table view to reload cells
-			self._tableView!.reloadData()
-			
-			let rowCount = self._rows.count
-			
-			objc_sync_exit(self)
-
-			// Scroll to bottom
-			if rowCount > 0 {
-				self._tableView!.scrollToRowAtIndexPath(NSIndexPath(forRow: rowCount-1, inSection: 0), atScrollPosition: UITableViewScrollPosition.Bottom, animated: false)
-			}
-			
-			// Hide wait view
-			self._waitView!.hidden = true
-		}
+	func subscription(subscription: LSSubscription, didFailWithErrorCode code: Int, message: String?) {
+		NSLog("LS Subscription did fail with error (code: \(code), message: \(message)")
+	}
+	
+	func subscription(subscription: LSSubscription, didLoseUpdates lostUpdates: UInt, forItemName itemName: String?, itemPos: UInt) {
+		NSLog("LS Subscription did lose updates (lost updates: \(lostUpdates), item name: \(itemName), item pos: \(itemPos)")
+	}
+	
+	func subscriptionDidSubscribe(subscription: LSSubscription) {
+		NSLog("LS Subscription did susbcribe")
+	}
+	
+	func subscriptionDidUnsubscribe(subscription: LSSubscription) {
+		NSLog("LS Subscription did unsusbcribe")
 	}
 	
 	
@@ -463,10 +430,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 		
 		NSLog("Sending message \"\(message)\"...")
 
-		// Send the message in background
-		dispatch_async(_queue) {
-			self._client.sendMessage("CHAT|" + message)
-		}
+		// Send the message (executes in background)
+		self._client.sendMessage("CHAT|" + message)
 		
 		// No linefeeds allowed inside the message
 		return false

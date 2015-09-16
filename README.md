@@ -80,3 +80,4 @@ Done this, the app should run correctly on your test device and connect to your 
 
 * Compatible with Lightstreamer iOS Client Library version 1.2 or newer.
 * For Lightstreamer Allegro (+ iOS Client API support), Presto, Vivace.
+* For a version of this example compatible with Lightstreamer iOS Client API version 1.x, please refer to [this tag](https://github.com/Weswit/Lightstreamer-example-Chat-client-ios-swift/tree/latest-for-client-1.x).

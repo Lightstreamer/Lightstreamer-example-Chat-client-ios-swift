@@ -62,7 +62,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 	//////////////////////////////////////////////////////////////////////////
 	// Constructor
 	
-	required init(coder aDecoder: NSCoder) {
+	required init?(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)
 		
 		// Initialize the timestamp formatter
@@ -229,7 +229,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 			
 			// Compute approximate cell height, we can't
 			// do better than this with APIs available in beta 3
-			let length = count(message!)
+			let length = (message!).characters.count
 
 			var lines = (length / AVERAGE_LINE_LENGTH)
 			if length % AVERAGE_LINE_LENGTH > 0 {
@@ -391,7 +391,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 				objc_sync_exit(self)
 				
 				// If the table is positioned on last row, scroll with new message
-				let visibleRows = self._tableView!.indexPathsForVisibleRows() as! [NSIndexPath]?
+				let visibleRows = self._tableView!.indexPathsForVisibleRows 
 				if (visibleRows != nil) && visibleRows!.count > 0 {
 					let lastIndexPath = visibleRows![visibleRows!.count-1] as NSIndexPath
 					if lastIndexPath.row == rowCount-2 {
@@ -431,7 +431,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 		NSLog("Sending message \"\(message)\"...")
 
 		// Send the message (executes in background)
-		self._client.sendMessage("CHAT|" + message)
+		self._client.sendMessage("CHAT|" + message!)
 		
 		// No linefeeds allowed inside the message
 		return false
@@ -453,10 +453,10 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 		// Reducing size of table
 		let baseView = self.view.viewWithTag(CHAT_SUBVIEW_TAG)
 		
-		let keyboardFrame = notification.userInfo![UIKeyboardFrameBeginUserInfoKey]!.CGRectValue()
+		let keyboardFrame = notification.userInfo![UIKeyboardFrameBeginUserInfoKey]!.CGRectValue
 		let keyboardDuration = notification.userInfo![UIKeyboardAnimationDurationUserInfoKey]!.doubleValue
 		
-		let visibleRows = _tableView!.indexPathsForVisibleRows() as! [NSIndexPath]?
+		let visibleRows = _tableView!.indexPathsForVisibleRows 
 		var lastIndexPath : NSIndexPath? = nil
 
 		if (visibleRows != nil) && visibleRows!.count > 0 {
@@ -490,7 +490,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 		// Expanding size of table
 		let baseView = self.view.viewWithTag(CHAT_SUBVIEW_TAG)
 		
-		let keyboardFrame = notification.userInfo![UIKeyboardFrameBeginUserInfoKey]!.CGRectValue()
+		let keyboardFrame = notification.userInfo![UIKeyboardFrameBeginUserInfoKey]!.CGRectValue
 		let keyboardDuration = notification.userInfo![UIKeyboardAnimationDurationUserInfoKey]!.doubleValue
 		
 		UIView.animateWithDuration(keyboardDuration, delay: 0.0, options: UIViewAnimationOptions.CurveEaseOut, animations: {

@@ -25,7 +25,7 @@ let ADAPTER_SET = "CHAT"
 let DATA_ADAPTER = "CHAT_ROOM"
 
 /* Configuration for online demo server
-let SERVER_URL = "http://push.lightstreamer.com"
+let SERVER_URL = "https://push.lightstreamer.com"
 let ADAPTER_SET = "DEMO"
 let DATA_ADAPTER = "CHAT_ROOM"
 */
@@ -110,15 +110,18 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 	// Action methods
 	
 	@IBAction func sendTapped() {
-
-		// Get the message text
-		let message = _textField!.text
-		_textField!.text = ""
-		
-		NSLog("Sending message \"\(message)\"...")
-		
-		// Send the message (executes in background)
-		self._client.sendMessage("CHAT|\(message)")
+        if ((_textField!.text == nil) || (_textField!.text! == "")) {
+            return
+        }
+        
+        // Get the message text
+        let message : String = _textField!.text!
+        _textField!.text = ""
+        
+        NSLog("Sending message \"\(message)\"...")
+        
+        // Send the message (executes in background)
+        self._client.sendMessage("CHAT|" + message)
 	}
 	
 	@IBAction func logoTapped() {
@@ -423,15 +426,18 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 	// Methods of UITextFieldDelegate
 	
 	func textFieldShouldReturn(textField: UITextField) -> Bool {
+        if ((textField.text == nil) || (textField.text! == "")) {
+            return false
+        }
 		
 		// Get the message text
-		let message = textField.text
+        let message : String = textField.text!
 		textField.text = ""
 		
 		NSLog("Sending message \"\(message)\"...")
 
 		// Send the message (executes in background)
-		self._client.sendMessage("CHAT|" + message!)
+		self._client.sendMessage("CHAT|" + message)
 		
 		// No linefeeds allowed inside the message
 		return false

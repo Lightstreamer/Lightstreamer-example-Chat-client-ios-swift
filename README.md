@@ -10,7 +10,7 @@ This project contains an example of an application for iPhone that employs the [
 
 ## Details
 
-This app, compatible with iPhone, is a Swift version of the [Lightstreamer - Basic Chat Demo - HTML Client](https://github.com/Weswit/Lightstreamer-example-Chat-client-javascript).
+This app, compatible with iPhone, is a Swift version of the [Lightstreamer - Basic Chat Demo - HTML Client](https://github.com/Lightstreamer/Lightstreamer-example-Chat-client-javascript).
 
 This app uses the **iOS Client API for Lightstreamer** to handle the communications with Lightstreamer Server. A simple user interface is implemented to display the real-time messages received from Lightstreamer Server.
 
@@ -50,7 +50,7 @@ Done this, open the workspace with Xcode and it should compile with no errors. I
 * Create and install an appropriate provisioning profile for the app ID above and your test device, on the Apple Developer Center.
 * Set the app ID above as the *Bundle Identifier* of the Xcode project of the app.
 * Set the IP address of your local Lightstreamer Server in the constant `SERVER_URL`, defined in `SwiftChat/ViewController.swift`; a ":port" part can also be added.
-* Follow the installation instructions for the Data and Metadata adapters required by the demo, detailed in the [Lightstreamer - Basic Chat Demo - Java Adapter](https://github.com/Weswit/Lightstreamer-example-Chat-adapter-java) project.
+* Follow the installation instructions for the Data and Metadata adapters required by the demo, detailed in the [Lightstreamer - Basic Chat Demo - Java Adapter](https://github.com/Lightstreamer/Lightstreamer-example-Chat-adapter-java) project.
 
 Done this, the app should run correctly on your test device and connect to your server.
 
@@ -58,7 +58,7 @@ Done this, the app should run correctly on your test device and connect to your 
 
 ### Lightstreamer Adapters Needed by This Demo Client
 
-* [Lightstreamer - Basic Chat Demo - Java Adapter](https://github.com/Weswit/Lightstreamer-example-Chat-adapter-java)
+* [Lightstreamer - Basic Chat Demo - Java Adapter](https://github.com/Lightstreamer/Lightstreamer-example-Chat-adapter-java)
 
 ### More informations on developing Lightstreamer apps with Swift
 
@@ -66,12 +66,12 @@ Done this, the app should run correctly on your test device and connect to your 
 
 ### Related Projects
 
-* [Lightstreamer - Basic Chat Demo - HTML Client](https://github.com/Weswit/Lightstreamer-example-Chat-client-javascript)
-* [Lightstreamer - Stock-List Demo - iOS Client](https://github.com/Weswit/Lightstreamer-example-StockList-client-ios)
-* [Lightstreamer - Stock-List Demo with APNs Push Notifications- iOS Client](https://github.com/Weswit/Lightstreamer-example-MPNStockList-client-ios)
+* [Lightstreamer - Basic Chat Demo - HTML Client](https://github.com/Lightstreamer/Lightstreamer-example-Chat-client-javascript)
+* [Lightstreamer - Stock-List Demo - iOS Client](https://github.com/Lightstreamer/Lightstreamer-example-StockList-client-ios)
+* [Lightstreamer - Stock-List Demo with APNs Push Notifications- iOS Client](https://github.com/Lightstreamer/Lightstreamer-example-MPNStockList-client-ios)
 
 ## Lightstreamer Compatibility Notes
 
 * Compatible with Lightstreamer iOS Client Library version 2.0.0-a1 or newer.
 * For Lightstreamer Allegro (+ iOS Client API support), Presto, Vivace.
-* For a version of this example compatible with Lightstreamer iOS Client API version 1.x, please refer to [this tag](https://github.com/Weswit/Lightstreamer-example-Chat-client-ios-swift/tree/latest-for-client-1.x).
+* For a version of this example compatible with Lightstreamer iOS Client API version 1.x, please refer to [this tag](https://github.com/Lightstreamer/Lightstreamer-example-Chat-client-ios-swift/tree/latest-for-client-1.x).

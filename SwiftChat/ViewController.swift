@@ -79,8 +79,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 	override func viewWillAppear(animated: Bool) {
 		
 		// Register for keyboard notifications
-		NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillShow:", name: UIKeyboardWillShowNotification, object: nil)
-		NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillHide:", name: UIKeyboardWillHideNotification, object: nil)
+		NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ViewController.keyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
+		NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ViewController.keyboardWillHide(_:)), name: UIKeyboardWillHideNotification, object: nil)
 
 		NSLog("Connecting...")
 		
@@ -236,7 +236,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 
 			var lines = (length / AVERAGE_LINE_LENGTH)
 			if length % AVERAGE_LINE_LENGTH > 0 {
-				lines++
+				lines += 1
 			}
 			
 			let height = TOP_BORDER_HEIGHT + LINE_HEIGHT * CGFloat(lines) + BOTTOM_BORDER_HEIGHT

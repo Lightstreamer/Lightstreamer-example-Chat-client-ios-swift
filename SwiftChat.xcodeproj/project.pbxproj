@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		46ED7BD66B964F3FE420BD93 /* libPods-SwiftChat.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A3A77362BE0E26EDA3945296 /* libPods-SwiftChat.a */; };
 		8C3C697A195592240048C518 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C3C6979195592240048C518 /* AppDelegate.swift */; };
 		8C3C697C195592240048C518 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C3C697B195592240048C518 /* ViewController.swift */; };
 		8C3C6981195592240048C518 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8C3C6980195592240048C518 /* Images.xcassets */; };
@@ -34,7 +33,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				46ED7BD66B964F3FE420BD93 /* libPods-SwiftChat.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

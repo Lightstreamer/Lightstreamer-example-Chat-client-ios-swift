@@ -47,7 +47,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 	let _client = LSLightstreamerClient(serverAddress: SERVER_URL, adapterSet: ADAPTER_SET)
 	let _subscription = LSSubscription(subscriptionMode: "DISTINCT", item: "chat_room", fields: ["message", "raw_timestamp", "IP"])
 	
-	let _formatter = NSDateFormatter()
+	let _formatter = DateFormatter()
 	
 	var _keyboardShown = false
 	var _snapshotEnded = false
@@ -69,18 +69,18 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 		_formatter.dateFormat = "dd/MM/YYYY HH:mm:ss"
 		
 		// Log the lib version
-		NSLog("LS Client lib version: \(LSLightstreamerClient.LIB_VERSION())");
+		NSLog("LS Client lib version: \(LSLightstreamerClient.lib_VERSION())");
 	}
 
 	
 	//////////////////////////////////////////////////////////////////////////
 	// Methods of UIViewController
 
-	override func viewWillAppear(animated: Bool) {
+	override func viewWillAppear(_ animated: Bool) {
 		
 		// Register for keyboard notifications
-		NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ViewController.keyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
-		NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ViewController.keyboardWillHide(_:)), name: UIKeyboardWillHideNotification, object: nil)
+		NotificationCenter.default.addObserver(self, selector: #selector(ViewController.keyboardWillShow(_:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+		NotificationCenter.default.addObserver(self, selector: #selector(ViewController.keyboardWillHide(_:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
 
 		NSLog("Connecting...")
 		
@@ -98,11 +98,11 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 		
 	}
 	
-	override func viewWillDisappear(animated: Bool) {
+	override func viewWillDisappear(_ animated: Bool) {
 		
 		// Unregister for keyboard notifications while not visible
-		NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillShowNotification, object: nil)
-		NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillHideNotification, object: nil)
+		NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+		NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillHide, object: nil)
 	}
 	
 	
@@ -128,19 +128,19 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 		NSLog("Opening Lightstreamer home page URL...")
 		
 		// Open the LS page
-		let url = NSURL(string: "http://www.lightstreamer.com/")
-		UIApplication.sharedApplication().openURL(url!)
+		let url = URL(string: "http://www.lightstreamer.com/")
+		UIApplication.shared.openURL(url!)
 	}
 	
 	
 	//////////////////////////////////////////////////////////////////////////
 	// Methods of UITableViewDataSource
 	
-	func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+	func numberOfSections(in tableView: UITableView) -> Int {
 		return 1
 	}
 	
-	func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 
 		// Synchronize access to row list
 		objc_sync_enter(self)
@@ -152,16 +152,16 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 		return rowCount
 	}
 	
-	func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-		var cell = tableView.dequeueReusableCellWithIdentifier("ChatCell") as? ChatCell
+	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+		var cell = tableView.dequeueReusableCell(withIdentifier: "ChatCell") as? ChatCell
 		if cell == nil {
-			cell = ChatCell(style: UITableViewCellStyle.Default, reuseIdentifier: "ChatCell")
+			cell = ChatCell(style: UITableViewCellStyle.default, reuseIdentifier: "ChatCell")
 		}
 		
 		// Synchronize access to row list
 		objc_sync_enter(self)
 		
-		let row = _rows[indexPath.row]
+		let row = _rows[(indexPath as NSIndexPath).row]
 		
 		objc_sync_exit(self)
 		
@@ -185,25 +185,25 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 	//////////////////////////////////////////////////////////////////////////
 	// Methods of UITableViewDelegate
 	
-	func tableView(tableView: UITableView, willSelectRowAtIndexPath indexPath: NSIndexPath) -> NSIndexPath? {
+	func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
 
 		// No selection allowed
 		return nil
 	}
 	
-	func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+	func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
 		
 		// Synchronize access to row list
 		objc_sync_enter(self)
 		
-		let row = _rows[indexPath.row]
+		let row = _rows[(indexPath as NSIndexPath).row]
 		
 		objc_sync_exit(self)
 		
 		// Get cell address
 		let address = row["address"]
 		
-		var color = UIColor.whiteColor()
+		var color = UIColor.white
 
 		if address != nil {
 			
@@ -218,12 +218,12 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 		cell.backgroundColor = color
 	}
 	
-	func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+	func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
 
 		// Synchronize access to row list
 		objc_sync_enter(self)
 		
-		let row = _rows[indexPath.row]
+		let row = _rows[(indexPath as NSIndexPath).row]
 		
 		objc_sync_exit(self)
 		
@@ -252,11 +252,11 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 	//////////////////////////////////////////////////////////////////////////
 	// Methods of LSClientDelegate
 	
-	func client(client: LSLightstreamerClient, didChangeProperty property: String) {
+	func client(_ client: LSLightstreamerClient, didChangeProperty property: String) {
 		NSLog("LS Client property did change (property: \(property))")
 	}
 	
-	func client(client: LSLightstreamerClient, didChangeStatus status: String) {
+	func client(_ client: LSLightstreamerClient, didChangeStatus status: String) {
 		NSLog("LS Client connection status did change (status: \(status))")
 
 		if (status.hasPrefix("DISCONNECTED")) {
@@ -272,7 +272,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 		}
 	}
 	
-	func client(client: LSLightstreamerClient, didReceiveServerError errorCode: Int, withMessage errorMessage: String?) {
+	func client(_ client: LSLightstreamerClient, didReceiveServerError errorCode: Int, withMessage errorMessage: String?) {
 		NSLog("LS Client connection did receive server error (code: \(errorCode), message: \(errorMessage))")
 	}
 	
@@ -281,10 +281,10 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 	// Disconnection handling
 
 	func handleDisconnection() {
-		dispatch_sync(dispatch_get_main_queue()) {
+		DispatchQueue.main.sync {
 			
 			// Show wait view
-			self._waitView!.hidden = false
+			self._waitView!.isHidden = false
 		}
 
 		// Clear snapshot status
@@ -302,14 +302,14 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 	//////////////////////////////////////////////////////////////////////////
 	// Methods of LSSubscriptionDelegate
 	
-	func subscription(subscription: LSSubscription, didClearSnapshotForItemName itemName: String?, itemPos: UInt) {}
+	func subscription(_ subscription: LSSubscription, didClearSnapshotForItemName itemName: String?, itemPos: UInt) {}
 	
-	func subscription(subscription: LSSubscription, didEndSnapshotForItemName itemName: String?, itemPos: UInt) {
+	func subscription(_ subscription: LSSubscription, didEndSnapshotForItemName itemName: String?, itemPos: UInt) {
 		NSLog("LS Subscription snapshot did end")
 		
 		_snapshotEnded = true
 		
-		dispatch_async(dispatch_get_main_queue()) {
+		DispatchQueue.main.async {
 			
 			// Synchronize access to row list
 			objc_sync_enter(self)
@@ -323,18 +323,18 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 			
 			// Scroll to bottom
 			if rowCount > 0 {
-				self._tableView!.scrollToRowAtIndexPath(NSIndexPath(forRow: rowCount-1, inSection: 0), atScrollPosition: UITableViewScrollPosition.Bottom, animated: false)
+				self._tableView!.scrollToRow(at: IndexPath(row: rowCount-1, section: 0), at: UITableViewScrollPosition.bottom, animated: false)
 			}
 			
 			// Hide wait view
-			self._waitView!.hidden = true
+			self._waitView!.isHidden = true
 		}
 	}
 	
-	func subscription(subscription: LSSubscription, didUpdateItem itemUpdate: LSItemUpdate) {
-		let message = itemUpdate.valueWithFieldName("message")
-		let rawTimestamp = itemUpdate.valueWithFieldName("raw_timestamp")
-		let address = itemUpdate.valueWithFieldName("IP")
+	func subscription(_ subscription: LSSubscription, didUpdateItem itemUpdate: LSItemUpdate) {
+		let message = itemUpdate.value(withFieldName: "message")
+		let rawTimestamp = itemUpdate.value(withFieldName: "raw_timestamp")
+		let address = itemUpdate.value(withFieldName: "IP")
 		
 		if (message == nil) || (rawTimestamp == nil) || (address == nil) {
 			NSLog("Discarding incomplete message")
@@ -343,8 +343,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 		
 		// Format the timestamp
 		let timeInterval = (rawTimestamp! as NSString).doubleValue / 1000.0
-		let date = NSDate(timeIntervalSince1970: timeInterval)
-		let timestamp = _formatter.stringFromDate(date)
+		let date = Date(timeIntervalSince1970: timeInterval)
+		let timestamp = _formatter.string(from: date)
 		
 		NSLog("Received message from \(address!) at \(timestamp)")
 		
@@ -355,7 +355,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 			
 			// Generate color from address
 			var addr = in_addr(s_addr: 0)
-			inet_aton((address! as NSString).UTF8String, &addr)
+			inet_aton((address! as NSString).utf8String, &addr)
 			
 			let b1 = UInt32(addr.s_addr) >> 24
 			let b2 = (UInt32(addr.s_addr) & 0x00ff0000) >> 16
@@ -381,7 +381,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 		objc_sync_exit(self)
 		
 		if _snapshotEnded {
-			dispatch_async(dispatch_get_main_queue()) {
+			DispatchQueue.main.async {
 				
 				// Synchronize access to row list
 				objc_sync_enter(self)
@@ -396,28 +396,28 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 				// If the table is positioned on last row, scroll with new message
 				let visibleRows = self._tableView!.indexPathsForVisibleRows 
 				if (visibleRows != nil) && visibleRows!.count > 0 {
-					let lastIndexPath = visibleRows![visibleRows!.count-1] as NSIndexPath
-					if lastIndexPath.row == rowCount-2 {
-						self._tableView!.scrollToRowAtIndexPath(NSIndexPath(forRow: rowCount-1, inSection: 0), atScrollPosition: UITableViewScrollPosition.Bottom, animated: true)
+					let lastIndexPath = visibleRows![visibleRows!.count-1] as IndexPath
+					if (lastIndexPath as NSIndexPath).row == rowCount-2 {
+						self._tableView!.scrollToRow(at: IndexPath(row: rowCount-1, section: 0), at: UITableViewScrollPosition.bottom, animated: true)
 					}
 				}
 			}
 		}
 	}
 	
-	func subscription(subscription: LSSubscription, didFailWithErrorCode code: Int, message: String?) {
+	func subscription(_ subscription: LSSubscription, didFailWithErrorCode code: Int, message: String?) {
 		NSLog("LS Subscription did fail with error (code: \(code), message: \(message)")
 	}
 	
-	func subscription(subscription: LSSubscription, didLoseUpdates lostUpdates: UInt, forItemName itemName: String?, itemPos: UInt) {
+	func subscription(_ subscription: LSSubscription, didLoseUpdates lostUpdates: UInt, forItemName itemName: String?, itemPos: UInt) {
 		NSLog("LS Subscription did lose updates (lost updates: \(lostUpdates), item name: \(itemName), item pos: \(itemPos)")
 	}
 	
-	func subscriptionDidSubscribe(subscription: LSSubscription) {
+	func subscriptionDidSubscribe(_ subscription: LSSubscription) {
 		NSLog("LS Subscription did susbcribe")
 	}
 	
-	func subscriptionDidUnsubscribe(subscription: LSSubscription) {
+	func subscriptionDidUnsubscribe(_ subscription: LSSubscription) {
 		NSLog("LS Subscription did unsusbcribe")
 	}
 	
@@ -425,7 +425,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 	//////////////////////////////////////////////////////////////////////////
 	// Methods of UITextFieldDelegate
 	
-	func textFieldShouldReturn(textField: UITextField) -> Bool {
+	func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if ((textField.text == nil) || (textField.text! == "")) {
             return false
         }
@@ -447,7 +447,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 	//////////////////////////////////////////////////////////////////////////
 	// Keyboard hide/show notifications
 	
-	func keyboardWillShow(notification: NSNotification) {
+	func keyboardWillShow(_ notification: Notification) {
 
 		// Check for double invocation
 		if _keyboardShown {
@@ -459,18 +459,18 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 		// Reducing size of table
 		let baseView = self.view.viewWithTag(CHAT_SUBVIEW_TAG)
 		
-		let keyboardFrame = notification.userInfo![UIKeyboardFrameBeginUserInfoKey]!.CGRectValue
-		let keyboardDuration = notification.userInfo![UIKeyboardAnimationDurationUserInfoKey]!.doubleValue
+		let keyboardFrame = ((notification as NSNotification).userInfo![UIKeyboardFrameBeginUserInfoKey]! as AnyObject).cgRectValue
+		let keyboardDuration = ((notification as NSNotification).userInfo![UIKeyboardAnimationDurationUserInfoKey]! as AnyObject).doubleValue
 		
 		let visibleRows = _tableView!.indexPathsForVisibleRows 
-		var lastIndexPath : NSIndexPath? = nil
+		var lastIndexPath : IndexPath? = nil
 
 		if (visibleRows != nil) && visibleRows!.count > 0 {
-			lastIndexPath = visibleRows![visibleRows!.count-1] as NSIndexPath
+			lastIndexPath = visibleRows![visibleRows!.count-1] as IndexPath
 		}
 		
-		UIView.animateWithDuration(keyboardDuration, delay: 0.0, options: UIViewAnimationOptions.CurveEaseOut, animations: {
-			baseView!.frame = CGRectMake(baseView!.frame.origin.x, baseView!.frame.origin.y, baseView!.frame.size.width, baseView!.frame.size.height - keyboardFrame.size.height)
+		UIView.animate(withDuration: keyboardDuration!, delay: 0.0, options: UIViewAnimationOptions.curveEaseOut, animations: {
+			baseView!.frame = CGRect(x: baseView!.frame.origin.x, y: baseView!.frame.origin.y, width: baseView!.frame.size.width, height: baseView!.frame.size.height - (keyboardFrame?.size.height)!)
 		
 		}, completion: {
 			(finished: Bool) in
@@ -479,12 +479,12 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 	
 				// Scroll down the table so that the last
 				// visible row remains visible
-				self._tableView!.scrollToRowAtIndexPath(lastIndexPath!, atScrollPosition: UITableViewScrollPosition.Bottom, animated: true)
+				self._tableView!.scrollToRow(at: lastIndexPath!, at: UITableViewScrollPosition.bottom, animated: true)
 			}
 		})
 	}
 	
-	func keyboardWillHide(notification: NSNotification) {
+	func keyboardWillHide(_ notification: Notification) {
 
 		// Check for double invocation
 		if !_keyboardShown {
@@ -496,11 +496,11 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 		// Expanding size of table
 		let baseView = self.view.viewWithTag(CHAT_SUBVIEW_TAG)
 		
-		let keyboardFrame = notification.userInfo![UIKeyboardFrameBeginUserInfoKey]!.CGRectValue
-		let keyboardDuration = notification.userInfo![UIKeyboardAnimationDurationUserInfoKey]!.doubleValue
+		let keyboardFrame = ((notification as NSNotification).userInfo![UIKeyboardFrameBeginUserInfoKey]! as AnyObject).cgRectValue
+		let keyboardDuration = ((notification as NSNotification).userInfo![UIKeyboardAnimationDurationUserInfoKey]! as AnyObject).doubleValue
 		
-		UIView.animateWithDuration(keyboardDuration, delay: 0.0, options: UIViewAnimationOptions.CurveEaseOut, animations: {
-			baseView!.frame = CGRectMake(baseView!.frame.origin.x, baseView!.frame.origin.y, baseView!.frame.size.width, baseView!.frame.size.height + keyboardFrame.size.height)
+		UIView.animate(withDuration: keyboardDuration!, delay: 0.0, options: UIViewAnimationOptions.curveEaseOut, animations: {
+			baseView!.frame = CGRect(x: baseView!.frame.origin.x, y: baseView!.frame.origin.y, width: baseView!.frame.size.width, height: baseView!.frame.size.height + (keyboardFrame?.size.height)!)
 
 		}, completion: nil)
 	}

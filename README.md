@@ -4,7 +4,7 @@
 
 The *Chat Demo* is a very simple chat application based on Lightstreamer.
 
-This project contains an example of an application for iPhone that employs the [Lightstreamer iOS Client library](http://www.lightstreamer.com/docs/client_ios_api/index.html).
+This project contains an example of an application for iPhone that employs the [Lightstreamer iOS Client library](http://www.lightstreamer.com/api/ls-ios-client/latest/).
 
 ![screenshot](screenshot_large.png)
 

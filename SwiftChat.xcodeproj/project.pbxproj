@@ -7,16 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		612FBB43415845BB98A721A5 /* Pods_SwiftChat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F5DC80A2462E5918DFC86E99 /* Pods_SwiftChat.framework */; };
 		8C3C697A195592240048C518 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C3C6979195592240048C518 /* AppDelegate.swift */; };
 		8C3C697C195592240048C518 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C3C697B195592240048C518 /* ViewController.swift */; };
 		8C3C6981195592240048C518 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8C3C6980195592240048C518 /* Images.xcassets */; };
 		8C8C0F5E196BEB340069601A /* ChatCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C8C0F5D196BEB340069601A /* ChatCell.swift */; };
 		8C8C0F5F196C29050069601A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8C3C697D195592240048C518 /* Main.storyboard */; };
-		8E3568BFD8DBA5257B8F9EA8 /* libPods-SwiftChat.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 22264E73FFB7E2C19D4A4C18 /* libPods-SwiftChat.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		22264E73FFB7E2C19D4A4C18 /* libPods-SwiftChat.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SwiftChat.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5FC990D6CFDE004E1C3BB958 /* Pods-SwiftChat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftChat.release.xcconfig"; path = "Pods/Target Support Files/Pods-SwiftChat/Pods-SwiftChat.release.xcconfig"; sourceTree = "<group>"; };
 		8C3C6974195592240048C518 /* SwiftChat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftChat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C3C6978195592240048C518 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -27,6 +26,7 @@
 		8C8C0F5D196BEB340069601A /* ChatCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatCell.swift; sourceTree = "<group>"; };
 		8C90F0A0196AA97400284BFF /* SwiftChat-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SwiftChat-Bridging-Header.h"; sourceTree = "<group>"; };
 		BA6F915F93A25F1C6FEBF83E /* Pods-SwiftChat.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftChat.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SwiftChat/Pods-SwiftChat.debug.xcconfig"; sourceTree = "<group>"; };
+		F5DC80A2462E5918DFC86E99 /* Pods_SwiftChat.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SwiftChat.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -34,7 +34,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8E3568BFD8DBA5257B8F9EA8 /* libPods-SwiftChat.a in Frameworks */,
+				612FBB43415845BB98A721A5 /* Pods_SwiftChat.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -84,7 +84,7 @@
 		CBB6E41BC0BF2CAE48C6C4D1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				22264E73FFB7E2C19D4A4C18 /* libPods-SwiftChat.a */,
+				F5DC80A2462E5918DFC86E99 /* Pods_SwiftChat.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -105,12 +105,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8C3C6990195592240048C518 /* Build configuration list for PBXNativeTarget "SwiftChat" */;
 			buildPhases = (
-				C7D4E0DBE5F50D40060E0059 /* 📦 Check Pods Manifest.lock */,
+				C7D4E0DBE5F50D40060E0059 /* [CP] Check Pods Manifest.lock */,
 				8C3C6970195592240048C518 /* Sources */,
 				8C3C6971195592240048C518 /* Frameworks */,
 				8C3C6972195592240048C518 /* Resources */,
-				446777AE598E2161B3F79322 /* 📦 Embed Pods Frameworks */,
-				3336C5E2FD826FE46533F60A /* 📦 Copy Pods Resources */,
+				446777AE598E2161B3F79322 /* [CP] Embed Pods Frameworks */,
+				3336C5E2FD826FE46533F60A /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -169,14 +169,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		3336C5E2FD826FE46533F60A /* 📦 Copy Pods Resources */ = {
+		3336C5E2FD826FE46533F60A /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Copy Pods Resources";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -184,14 +184,14 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SwiftChat/Pods-SwiftChat-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		446777AE598E2161B3F79322 /* 📦 Embed Pods Frameworks */ = {
+		446777AE598E2161B3F79322 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Embed Pods Frameworks";
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -199,19 +199,19 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SwiftChat/Pods-SwiftChat-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		C7D4E0DBE5F50D40060E0059 /* 📦 Check Pods Manifest.lock */ = {
+		C7D4E0DBE5F50D40060E0059 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */

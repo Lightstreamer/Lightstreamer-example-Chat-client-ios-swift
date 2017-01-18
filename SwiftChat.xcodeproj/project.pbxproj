@@ -134,7 +134,7 @@
 					8C3C6973195592240048C518 = {
 						CreatedOnToolsVersion = 6.0;
 						DevelopmentTeam = 7PGFJN8WH5;
-						LastSwiftMigration = 0800;
+						LastSwiftMigration = 0820;
 					};
 				};
 			};

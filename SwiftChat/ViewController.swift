@@ -28,7 +28,7 @@ let DATA_ADAPTER = "CHAT_ROOM"
 let SERVER_URL = "https://push.lightstreamer.com"
 let ADAPTER_SET = "DEMO"
 let DATA_ADAPTER = "CHAT_ROOM"
-*/
+ */
 
 let CHAT_SUBVIEW_TAG = 101
 let TEXT_FIELD_TAG = 102
@@ -64,12 +64,15 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 	
 	required init?(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)
+        
+        // Uncomment to enable detailed logging
+//      LSLightstreamerClient.setLoggerProvider(LSConsoleLoggerProvider(level: LSConsoleLogLevel.debug))
 		
 		// Initialize the timestamp formatter
 		_formatter.dateFormat = "dd/MM/YYYY HH:mm:ss"
 		
 		// Log the lib version
-		NSLog("LS Client lib version: \(LSLightstreamerClient.lib_VERSION())");
+		NSLog("LS Client lib version: \(LSLightstreamerClient.lib_VERSION)");
 	}
 
 	
@@ -95,7 +98,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 		self._subscription.requestedSnapshot = "yes"
 		self._subscription.addDelegate(self)
 		self._client.subscribe(_subscription)
-		
 	}
 	
 	override func viewWillDisappear(_ animated: Bool) {

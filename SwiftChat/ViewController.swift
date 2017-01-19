@@ -65,9 +65,15 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 	required init?(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)
         
+        // Limit the use of exceptions: some methods, e.g. LSItemUpdate.value(withFieldName:),
+        // will return nil in place of throwing, when called with invalid parameters.
+        // With Swift, set it to avoid crashes due to uncatchable exceptions when you
+        // expect these conditions may happen at runtime. See API docs for more information.
+        LSLightstreamerClient.limitExceptionsUse = true
+        
         // Uncomment to enable detailed logging
 //      LSLightstreamerClient.setLoggerProvider(LSConsoleLoggerProvider(level: LSConsoleLogLevel.debug))
-		
+
 		// Initialize the timestamp formatter
 		_formatter.dateFormat = "dd/MM/YYYY HH:mm:ss"
 		

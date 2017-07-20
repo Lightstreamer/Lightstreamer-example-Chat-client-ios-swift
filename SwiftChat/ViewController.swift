@@ -280,7 +280,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 		}
 	}
 	
-	func client(_ client: LSLightstreamerClient, didReceiveServerError errorCode: Int, withMessage errorMessage: String?) {
+	func client(_ client: LSLightstreamerClient, didReceiveServerError errorCode: Int, withMessage errorMessage: String) {
 		NSLog("LS Client connection did receive server error (code: \(errorCode), message: \(errorMessage))")
 	}
 	
@@ -414,11 +414,11 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 	}
 	
 	func subscription(_ subscription: LSSubscription, didFailWithErrorCode code: Int, message: String?) {
-		NSLog("LS Subscription did fail with error (code: \(code), message: \(message)")
+		NSLog("LS Subscription did fail with error (code: \(code), message: \(message ?? "nil")")
 	}
 	
 	func subscription(_ subscription: LSSubscription, didLoseUpdates lostUpdates: UInt, forItemName itemName: String?, itemPos: UInt) {
-		NSLog("LS Subscription did lose updates (lost updates: \(lostUpdates), item name: \(itemName), item pos: \(itemPos)")
+		NSLog("LS Subscription did lose updates (lost updates: \(lostUpdates), item name: \(itemName ?? "nil"), item pos: \(itemPos)")
 	}
 	
 	func subscriptionDidSubscribe(_ subscription: LSSubscription) {

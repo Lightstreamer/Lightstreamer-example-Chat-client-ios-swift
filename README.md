@@ -4,7 +4,7 @@
 
 The *Chat Demo* is a very simple chat application based on Lightstreamer.
 
-This project contains an example of an application for iPhone that employs the [Lightstreamer iOS Client library](http://www.lightstreamer.com/api/ls-ios-client/latest/).
+This project contains an example of an application for iPhone that employs the [Lightstreamer iOS Client library](http://www.lightstreamer.com/api/ls-ios-client/latest_4_0/).
 
 ![screenshot](screenshot_large.png)
 
@@ -26,7 +26,9 @@ Binaries for the application are not provided, but a full Xcode project specific
 
 ### Getting Started
 
-Before you can build this demo, you need to install CocoaPods to handle the project dependency on the Lightstreamer iOS client library. Follow these steps:
+Before you can build this demo, you need to install CocoaPods to handle the project dependency on the Lightstreamer iOS client library (see also the Lightstreamer Compatiblity Notes below).
+
+Follow these steps:
 
 * open a terminal and run the following command:
 
@@ -72,6 +74,8 @@ Done this, the app should run correctly on your test device and connect to your 
 
 ## Lightstreamer Compatibility Notes
 
-* Compatible with Lightstreamer iOS Client Library version 3.0.0-beta or newer.
-* For Lightstreamer Allegro (+ iOS Client API support), Presto, Vivace.
+* Code compatible with Lightstreamer iOS Client Library version 3.0.0-beta or newer.
+* For Lightstreamer Allegro (+ iOS Client API support), Presto, Vivace. Server compatibility depends on the iOS Client Library in use, which is specified in the `Podfile`:
+  * By default the project uses iOS Client Library version 4.0.0, which requires a Server version 7.0 b2 or newer.
+  * Use iOS Client Library version 3.0.1 for compatibility with Server version 6.1.
 * For a version of this example compatible with Lightstreamer iOS Client API version 1.x, please refer to [this tag](https://github.com/Lightstreamer/Lightstreamer-example-Chat-client-ios-swift/tree/latest-for-client-1.x).

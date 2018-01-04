@@ -1,8 +1,12 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="vXZ-lx-hvc">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -22,12 +26,14 @@
                                 <subviews>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="77" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="JhN-9p-18Z">
                                         <rect key="frame" x="0.0" y="0.0" width="440" height="336"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                         <prototypes>
                                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationWidth="0.0" reuseIdentifier="ChatCell" rowHeight="77" id="mY0-Q4-EPM" customClass="ChatCell" customModule="SwiftChat" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="22" width="440" height="77"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="mY0-Q4-EPM" id="OiI-QV-Mjk">
+                                                    <rect key="frame" x="0.0" y="0.0" width="440" height="76.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <textView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wA5-Q8-YMK">
@@ -41,7 +47,7 @@
                                                                 <constraint firstAttribute="height" constant="21" id="cMO-qO-nuA"/>
                                                             </constraints>
                                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                            <color key="textColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
@@ -74,7 +80,7 @@
                                             <constraint firstAttribute="width" constant="36" id="dWy-Pb-fsT"/>
                                         </constraints>
                                         <state key="normal" title="Send">
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                         <connections>
                                             <action selector="sendTapped" destination="vXZ-lx-hvc" eventType="touchUpInside" id="p81-4o-5Fs"/>
@@ -92,7 +98,7 @@
                                         </connections>
                                     </textField>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstItem="JhN-9p-18Z" firstAttribute="top" secondItem="pck-hg-kwh" secondAttribute="top" id="3ye-04-7ev"/>
                                     <constraint firstAttribute="trailing" secondItem="44g-O3-DRq" secondAttribute="trailing" id="D1z-Ub-B02"/>
@@ -111,14 +117,14 @@
                                     <constraint firstAttribute="height" constant="50" id="Heb-5S-n5o"/>
                                     <constraint firstAttribute="width" constant="280" id="gZA-iO-hWU"/>
                                 </constraints>
-                                <state key="normal" backgroundImage="Lightstreamer">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                <state key="normal" backgroundImage="Lightstreamer chat">
+                                    <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
                                     <action selector="logoTapped" destination="vXZ-lx-hvc" eventType="touchUpInside" id="Wfc-5r-cFh"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" alpha="0.69999999999999996" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="Shadow" translatesAutoresizingMaskIntoConstraints="NO" id="vsR-8h-ywK">
+                            <imageView userInteractionEnabled="NO" alpha="0.69999999999999996" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Shadow" translatesAutoresizingMaskIntoConstraints="NO" id="vsR-8h-ywK">
                                 <rect key="frame" x="20" y="86" width="440" height="5"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="5" id="xwc-Nr-L88"/>
@@ -141,14 +147,14 @@
                                         </constraints>
                                     </activityIndicatorView>
                                 </subviews>
-                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="centerX" secondItem="Bnd-rT-HSj" secondAttribute="centerX" id="Y05-2g-UTu"/>
                                     <constraint firstAttribute="centerY" secondItem="Bnd-rT-HSj" secondAttribute="centerY" id="yXI-of-Tb7"/>
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="vfv-O4-jgM" secondAttribute="bottom" constant="58" id="1aL-Y6-Zwn"/>
                             <constraint firstItem="y2i-ll-G7L" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="8" id="7GO-KN-ZvA"/>
@@ -162,6 +168,7 @@
                             <constraint firstAttribute="trailing" secondItem="pDH-5G-p4a" secondAttribute="trailing" id="ZjH-63-LVn"/>
                             <constraint firstAttribute="trailing" secondItem="pck-hg-kwh" secondAttribute="trailing" constant="20" id="bo5-4r-Qxm"/>
                             <constraint firstItem="pck-hg-kwh" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="20" id="kH7-oH-Eui"/>
+                            <constraint firstItem="vsR-8h-ywK" firstAttribute="top" secondItem="pck-hg-kwh" secondAttribute="top" id="m72-0w-tGX"/>
                             <constraint firstItem="pDH-5G-p4a" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="top" id="mNy-Af-beD"/>
                             <constraint firstItem="vsR-8h-ywK" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="20" id="nZv-Pg-2Fg"/>
                             <constraint firstItem="vfv-O4-jgM" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="20" id="spf-D0-FvL"/>
@@ -183,7 +190,7 @@
     </scenes>
     <resources>
         <image name="BottomShadow" width="320" height="5"/>
-        <image name="Lightstreamer" width="280" height="50"/>
+        <image name="Lightstreamer chat" width="280" height="50"/>
         <image name="Shadow" width="320" height="5"/>
     </resources>
 </document>

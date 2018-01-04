@@ -240,7 +240,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 			
 			// Compute approximate cell height, we can't
 			// do better than this with APIs available in beta 3
-			let length = (message!).characters.count
+			let length = (message!).count
 
 			var lines = (length / AVERAGE_LINE_LENGTH)
 			if length % AVERAGE_LINE_LENGTH > 0 {
@@ -455,7 +455,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 	//////////////////////////////////////////////////////////////////////////
 	// Keyboard hide/show notifications
 	
-	func keyboardWillShow(_ notification: Notification) {
+    @objc func keyboardWillShow(_ notification: Notification) {
 
 		// Check for double invocation
 		if _keyboardShown {
@@ -492,7 +492,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 		})
 	}
 	
-	func keyboardWillHide(_ notification: Notification) {
+    @objc func keyboardWillHide(_ notification: Notification) {
 
 		// Check for double invocation
 		if !_keyboardShown {

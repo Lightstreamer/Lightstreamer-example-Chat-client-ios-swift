@@ -1,13 +1,17 @@
 {
   "images" : [
     {
-      "idiom" : "universal",
-      "filename" : "Lighstreamer logo 1000x272.png",
-      "scale" : "1x"
+      "idiom" : "universal"
     },
     {
       "idiom" : "universal",
-      "scale" : "2x"
+      "scale" : "1x",
+      "filename" : "Lightstreamer.png"
+    },
+    {
+      "idiom" : "universal",
+      "scale" : "2x",
+      "filename" : "Lightstreamer@2x.png"
     },
     {
       "idiom" : "universal",

@@ -24,6 +24,7 @@
 		8C3C697B195592240048C518 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		8C3C697E195592240048C518 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		8C3C6980195592240048C518 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		8C4527A2202CC70B000F3791 /* SwiftChat.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SwiftChat.entitlements; sourceTree = "<group>"; };
 		8C7815021FFBEF9B00DEB287 /* LaunchScreen.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LaunchScreen.xib; sourceTree = "<group>"; };
 		8C8C0F5D196BEB340069601A /* ChatCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatCell.swift; sourceTree = "<group>"; };
 		8C90F0A0196AA97400284BFF /* SwiftChat-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SwiftChat-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -80,6 +81,7 @@
 			children = (
 				8C3C6978195592240048C518 /* Info.plist */,
 				8C90F0A0196AA97400284BFF /* SwiftChat-Bridging-Header.h */,
+				8C4527A2202CC70B000F3791 /* SwiftChat.entitlements */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -138,6 +140,11 @@
 						CreatedOnToolsVersion = 6.0;
 						DevelopmentTeam = 7PGFJN8WH5;
 						LastSwiftMigration = 0920;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -353,6 +360,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = SwiftChat/SwiftChat.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = SwiftChat/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -373,6 +381,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = SwiftChat/SwiftChat.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = SwiftChat/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;

@@ -40,7 +40,7 @@ let LINE_HEIGHT: CGFloat = 20.0
 let DEFAULT_CELL_HEIGHT: CGFloat = 77.0
 
 
-class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate, LSClientDelegate, LSSubscriptionDelegate {
+class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate, LSClientDelegate, LSSubscriptionDelegate, LSMPNDeviceDelegate, LSMPNSubscriptionDelegate {
 	var _rows = [[String: String]]() // Array<Dictionary<String, String>>
 	var _colors = [String: UIColor]() // Dictionary<String, UIColor>
 
@@ -78,7 +78,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 		_formatter.dateFormat = "dd/MM/YYYY HH:mm:ss"
 		
 		// Log the lib version
-		NSLog("LS Client lib version: \(LSLightstreamerClient.lib_VERSION)");
+        NSLog("ViewController: LS Client lib version: \(LSLightstreamerClient.lib_VERSION)");
 	}
 
 	
@@ -91,7 +91,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 		NotificationCenter.default.addObserver(self, selector: #selector(ViewController.keyboardWillShow(_:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
 		NotificationCenter.default.addObserver(self, selector: #selector(ViewController.keyboardWillHide(_:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
 
-		NSLog("Connecting...")
+		NSLog("ViewController: connecting...")
 		
 		// Add delegate
 		self._client.addDelegate(self)
@@ -99,10 +99,11 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 		// Start LS connection (executes in background)
 		self._client.connect()
 		
-		// Start subscription (executes in background)
+		// Start real-time subscription (executes in background)
 		self._subscription.dataAdapter = DATA_ADAPTER
 		self._subscription.requestedSnapshot = "yes"
 		self._subscription.addDelegate(self)
+        
 		self._client.subscribe(_subscription)
 	}
 	
@@ -126,14 +127,14 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         let message : String = _textField!.text!
         _textField!.text = ""
         
-        NSLog("Sending message \"\(message)\"...")
+        NSLog("ViewController: sending message \"\(message)\"...")
         
         // Send the message (executes in background)
         self._client.sendMessage("CHAT|" + message)
 	}
 	
 	@IBAction func logoTapped() {
-		NSLog("Opening Lightstreamer home page URL...")
+		NSLog("ViewController: opening Lightstreamer home page URL...")
 		
 		// Open the LS page
 		let url = URL(string: "http://www.lightstreamer.com/")
@@ -261,11 +262,15 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 	// Methods of LSClientDelegate
 	
 	func client(_ client: LSLightstreamerClient, didChangeProperty property: String) {
-		NSLog("LS Client property did change (property: \(property))")
+        // This method is always called from a background thread
+        
+		NSLog("ViewController: LS Client property did change (property: \(property))")
 	}
 	
 	func client(_ client: LSLightstreamerClient, didChangeStatus status: String) {
-		NSLog("LS Client connection status did change (status: \(status))")
+        // This method is always called from a background thread
+
+        NSLog("ViewController: LS Client connection status did change (status: \(status))")
 
 		if (status.hasPrefix("DISCONNECTED")) {
 			
@@ -281,15 +286,19 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 	}
 	
 	func client(_ client: LSLightstreamerClient, didReceiveServerError errorCode: Int, withMessage errorMessage: String) {
-		NSLog("LS Client connection did receive server error (code: \(errorCode), message: \(errorMessage))")
+        // This method is always called from a background thread
+
+        NSLog("ViewController: LS Client connection did receive server error (code: \(errorCode), message: \(errorMessage))")
 	}
 	
 	
-	//////////////////////////////////////////////////////////////////////////
+    //////////////////////////////////////////////////////////////////////////
 	// Disconnection handling
 
 	func handleDisconnection() {
-		DispatchQueue.main.sync {
+        // This method is always called from a background thread
+
+        DispatchQueue.main.sync {
 			
 			// Show wait view
 			self._waitView!.isHidden = false
@@ -307,13 +316,48 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 	}
 	
 
+    //////////////////////////////////////////////////////////////////////////
+    // MPN registration handling
+    
+    func deviceTokenAvailable(_ deviceToken: String) {
+        
+        // Register the MPN device (executes in background)
+        let mpnDevice = LSMPNDevice(deviceToken: deviceToken)
+        mpnDevice.addDelegate(self)
+        
+        _client.register(forMPN: mpnDevice)
+        
+        // Prepare the notification format
+        let builder = LSMPNBuilder()
+            .title("Message from ${IP}")
+            .subtitle("Received at ${timestamp}")
+            .body("${message}")
+            .sound("Default")
+            .badge(with: "AUTO")
+
+        // Prepare and activate the MPN subscription (executes in background)
+        let mpnSubscription = LSMPNSubscription(subscriptionMode: "DISTINCT", item: "chat_room", fields: ["message", "timestamp", "IP"])
+        mpnSubscription.dataAdapter = DATA_ADAPTER
+        mpnSubscription.notificationFormat = builder.build()
+        mpnSubscription.addDelegate(self)
+        
+        _client.subscribeMPN(mpnSubscription, coalescing: true)
+    }
+
+    
 	//////////////////////////////////////////////////////////////////////////
 	// Methods of LSSubscriptionDelegate
 	
-	func subscription(_ subscription: LSSubscription, didClearSnapshotForItemName itemName: String?, itemPos: UInt) {}
+	func subscription(_ subscription: LSSubscription, didClearSnapshotForItemName itemName: String?, itemPos: UInt) {
+        // This method is always called from a background thread
+
+        // Nothing to do, for now
+    }
 	
 	func subscription(_ subscription: LSSubscription, didEndSnapshotForItemName itemName: String?, itemPos: UInt) {
-		NSLog("LS Subscription snapshot did end")
+        // This method is always called from a background thread
+
+        NSLog("ViewController: LS Subscription snapshot did end")
 		
 		_snapshotEnded = true
 		
@@ -340,12 +384,14 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 	}
 	
 	func subscription(_ subscription: LSSubscription, didUpdateItem itemUpdate: LSItemUpdate) {
-		let message = itemUpdate.value(withFieldName: "message")
+        // This method is always called from a background thread
+
+        let message = itemUpdate.value(withFieldName: "message")
 		let rawTimestamp = itemUpdate.value(withFieldName: "raw_timestamp")
 		let address = itemUpdate.value(withFieldName: "IP")
 		
 		if (message == nil) || (rawTimestamp == nil) || (address == nil) {
-			NSLog("Discarding incomplete message")
+			NSLog("ViewController: discarding incomplete message")
 			return
 		}
 		
@@ -354,7 +400,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 		let date = Date(timeIntervalSince1970: timeInterval)
 		let timestamp = _formatter.string(from: date)
 		
-		NSLog("Received message from \(address!) at \(timestamp)")
+		NSLog("ViewController: received message from \(address!) at \(timestamp)")
 		
 		// Synchronize access to color list
 		objc_sync_enter(self)
@@ -414,22 +460,79 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 	}
 	
 	func subscription(_ subscription: LSSubscription, didFailWithErrorCode code: Int, message: String?) {
-		NSLog("LS Subscription did fail with error (code: \(code), message: \(message ?? "nil")")
+        // This method is always called from a background thread
+
+        NSLog("ViewController: LS Subscription did fail with error (code: \(code), message: \(message ?? "nil")")
 	}
 	
 	func subscription(_ subscription: LSSubscription, didLoseUpdates lostUpdates: UInt, forItemName itemName: String?, itemPos: UInt) {
-		NSLog("LS Subscription did lose updates (lost updates: \(lostUpdates), item name: \(itemName ?? "nil"), item pos: \(itemPos)")
+        // This method is always called from a background thread
+
+        NSLog("ViewController: LS Subscription did lose updates (lost updates: \(lostUpdates), item name: \(itemName ?? "nil"), item pos: \(itemPos)")
 	}
 	
 	func subscriptionDidSubscribe(_ subscription: LSSubscription) {
-		NSLog("LS Subscription did susbcribe")
+        // This method is always called from a background thread
+
+        NSLog("ViewController: LS Subscription did susbcribe")
 	}
 	
 	func subscriptionDidUnsubscribe(_ subscription: LSSubscription) {
-		NSLog("LS Subscription did unsusbcribe")
+        // This method is always called from a background thread
+
+        NSLog("ViewController: LS Subscription did unsusbcribe")
 	}
 	
 	
+    //////////////////////////////////////////////////////////////////////////
+    // Methods of LSMPNDeviceDelegate
+    
+    func mpnDeviceDidRegister(_ device: LSMPNDevice) {
+        // This method is always called from a background thread
+
+        NSLog("ViewController: LS MPN Device registered")
+        
+        // Reset the badge
+        _client.resetMPNBadge()
+    }
+    
+    func mpnDevice(_ device: LSMPNDevice, didFailRegistrationWithErrorCode code: Int, message: String?) {
+        // This method is always called from a background thread
+
+        NSLog("ViewController: LS MPN Device registration error: \(code) - \(message ?? "null")")
+    }
+    
+    func mpnDeviceDidUpdateSubscriptions(_ device: LSMPNDevice) {
+        // This method is always called from a background thread
+
+        NSLog("ViewController: LS MPN Device subscriptions updated")
+    }
+    
+    func mpnDeviceDidResetBadge(_ device: LSMPNDevice) {
+        // This method is always called from a background thread
+
+        NSLog("ViewController: LS MPN Device badge reset")
+    }
+    
+    func mpnDevice(_ device: LSMPNDevice, didFailBadgeResetWithErrorCode code: Int, message: String?) {
+        // This method is always called from a background thread
+
+        NSLog("ViewController: LS MPN Device badge reset error: \(code) - \(message ?? "null")")
+    }
+
+    
+    //////////////////////////////////////////////////////////////////////////
+    // Methods of LSMPNSubscriptionDelegate
+
+    func mpnSubscriptionDidSubscribe(_ subscription: LSMPNSubscription) {
+        NSLog("ViewController: LS MPN Subscription activation succeeded");
+    }
+    
+    func mpnSubscription(_ subscription: LSMPNSubscription, didFailSubscriptionWithErrorCode code: Int, message: String?) {
+        NSLog("ViewController: LS MPN Subscription activation error: \(code) - \(message ?? "null")")
+    }
+
+    
 	//////////////////////////////////////////////////////////////////////////
 	// Methods of UITextFieldDelegate
 	
@@ -442,7 +545,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         let message : String = textField.text!
 		textField.text = ""
 		
-		NSLog("Sending message \"\(message)\"...")
+		NSLog("ViewController: sending message \"\(message)\"...")
 
 		// Send the message (executes in background)
 		self._client.sendMessage("CHAT|" + message)

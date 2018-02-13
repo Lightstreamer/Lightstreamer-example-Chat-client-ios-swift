@@ -4,7 +4,7 @@
 
 The *Chat Demo* is a very simple chat application based on Lightstreamer.
 
-This project contains an example of an application for iPhone that employs the [Lightstreamer iOS Client library](http://www.lightstreamer.com/api/ls-ios-client/latest_4_0/).
+This project contains an example of an application for iPhone that employs the [Lightstreamer iOS Client library](http://www.lightstreamer.com/api/ls-ios-client/latest_4_0/), with use of mobile push notifications (MPN).
 
 ![screenshot](screenshot_large.png)
 
@@ -12,9 +12,12 @@ This project contains an example of an application for iPhone that employs the [
 
 This app, compatible with iPhone, is a Swift version of the [Lightstreamer - Basic Chat Demo - HTML Client](https://github.com/Lightstreamer/Lightstreamer-example-Chat-client-javascript).
 
-This app uses the **iOS Client API for Lightstreamer** to handle the communications with Lightstreamer Server. A simple user interface is implemented to display the real-time messages received from Lightstreamer Server.
+This app uses the **iOS Client API for Lightstreamer** to handle the communications with Lightstreamer Server. A simple user interface is implemented to display the real-time messages received from Lightstreamer Server. Additionally, the app is able to forward incoming messages via mobile push notifications to any registered client.
 
-Further details about developing Swift Apps on iOS with Lightstreamer are discussed in [this blog post](http://blog.lightstreamer.com/2014/07/developing-swift-apps-on-ios-with.html).
+Further details about developing Swift Apps on iOS with Lightstreamer and MPNs are discussed in these blog post:
+
+* [Developing Swift Apps on iOS with Lightstreamer](http://blog.lightstreamer.com/2014/07/developing-swift-apps-on-ios-with.html).
+* [Mobile Push Notifications with Lightstreamer Server 7.0 and Client SDKs 4.0](http://blog.lightstreamer.com/2018/01/mobile-push-notifications-with.html)
 
 ## Install
 
@@ -48,23 +51,21 @@ Done this, open the workspace with Xcode and it should compile with no errors. I
 
 ### Compile and Run
 
-* Create an *app ID* on the [Apple Developer Center](https://developer.apple.com/membercenter/index.action).
-* Create and install an appropriate provisioning profile for the app ID above and your test device, on the Apple Developer Center.
-* Set the app ID above as the *Bundle Identifier* of the Xcode project of the app.
-* Set the IP address of your local Lightstreamer Server in the constant `SERVER_URL`, defined in `SwiftChat/ViewController.swift`; a ":port" part can also be added.
-* Follow the installation instructions for the Data and Metadata adapters required by the demo, detailed in the [Lightstreamer - Basic Chat Demo - Java Adapter](https://github.com/Lightstreamer/Lightstreamer-example-Chat-adapter-java) project.
+A full local deploy of this app requires a Lightstreamer Server 7.0 b2 or greater installation with appropriate Mobile Push Notifications (MPN) module configuration. A detailed step by step guide for setting up the server and configuring the client is available in the README of the following project:
 
-Done this, the app should run correctly on your test device and connect to your server.
+* [Lightstreamer - MPN Chat Demo Metadata - Java Adapter](https://github.com/Lightstreamer/Lightstreamer-example-MPNChatMetadata-adapter-java)
 
 ## See Also
 
 ### Lightstreamer Adapters Needed by This Demo Client
 
 * [Lightstreamer - Basic Chat Demo - Java Adapter](https://github.com/Lightstreamer/Lightstreamer-example-Chat-adapter-java)
+* [Lightstreamer - MPN Chat Demo Metadata - Java Adapter](https://github.com/Lightstreamer/Lightstreamer-example-MPNChatMetadata-adapter-java)
 
-### More informations on developing Lightstreamer apps with Swift
+### More informations on developing Lightstreamer apps with Swift and MPN:
 
 * [Developing Swift Apps on iOS with Lightstreamer](http://blog.lightstreamer.com/2014/07/developing-swift-apps-on-ios-with.html)
+* [Mobile Push Notifications with Lightstreamer Server 7.0 and Client SDKs 4.0](http://blog.lightstreamer.com/2018/01/mobile-push-notifications-with.html)
 
 ### Related Projects
 
@@ -74,8 +75,6 @@ Done this, the app should run correctly on your test device and connect to your 
 
 ## Lightstreamer Compatibility Notes
 
-* Code compatible with Lightstreamer iOS Client Library version 3.0.0-beta or newer.
-* For Lightstreamer Allegro (+ iOS Client API support), Presto, Vivace. Server compatibility depends on the iOS Client Library in use, which is specified in the `Podfile`:
-  * By default the project uses iOS Client Library version 4.0.0, which requires a Server version 7.0 b2 or newer.
-  * Use iOS Client Library version 3.0.1 for compatibility with Server version 6.1.
-* For a version of this example compatible with Lightstreamer iOS Client API version 1.x, please refer to [this tag](https://github.com/Lightstreamer/Lightstreamer-example-Chat-client-ios-swift/tree/latest-for-client-1.x).
+* Compatible with Lightstreamer iOS Client Library version 4.0.0 or newer.
+* For Lightstreamer Allegro (+ iOS Client API support), Presto, Vivace, version 7.0 b2 or greater.
+* For a version of this example compatible with Lightstreamer iOS Client API version 3.x and Server version 6.1, please refer to [this tag](https://github.com/Lightstreamer/Lightstreamer-example-Chat-client-ios-swift/tree/last-pre-MPN).

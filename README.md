@@ -14,9 +14,8 @@ This app, compatible with iPhone, is a Swift version of the [Lightstreamer - Bas
 
 This app uses the **iOS Client API for Lightstreamer** to handle the communications with Lightstreamer Server. A simple user interface is implemented to display the real-time messages received from Lightstreamer Server. Additionally, the app is able to forward incoming messages via mobile push notifications to any registered client.
 
-Further details about developing Swift Apps on iOS with Lightstreamer and MPNs are discussed in these blog post:
+Further details about developing apps on iOS with Lightstreamer and MPNs are discussed in this blog post:
 
-* [Developing Swift Apps on iOS with Lightstreamer](http://blog.lightstreamer.com/2014/07/developing-swift-apps-on-ios-with.html).
 * [Mobile Push Notifications with Lightstreamer Server 7.0 and Client SDKs 4.0](http://blog.lightstreamer.com/2018/01/mobile-push-notifications-with.html)
 
 ## Install
@@ -62,9 +61,8 @@ A full local deploy of this app requires a Lightstreamer Server 7.0 b2 or greate
 * [Lightstreamer - Basic Chat Demo - Java Adapter](https://github.com/Lightstreamer/Lightstreamer-example-Chat-adapter-java)
 * [Lightstreamer - MPN Chat Demo Metadata - Java Adapter](https://github.com/Lightstreamer/Lightstreamer-example-MPNChatMetadata-adapter-java)
 
-### More informations on developing Lightstreamer apps with Swift and MPN:
+### More informations on developing Lightstreamer apps with iOS and MPN:
 
-* [Developing Swift Apps on iOS with Lightstreamer](http://blog.lightstreamer.com/2014/07/developing-swift-apps-on-ios-with.html)
 * [Mobile Push Notifications with Lightstreamer Server 7.0 and Client SDKs 4.0](http://blog.lightstreamer.com/2018/01/mobile-push-notifications-with.html)
 
 ### Related Projects

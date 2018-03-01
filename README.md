@@ -4,7 +4,7 @@
 
 The *Chat Demo* is a very simple chat application based on Lightstreamer.
 
-This project contains an example of an application for iPhone that employs the [Lightstreamer iOS Client library](http://www.lightstreamer.com/api/ls-ios-client/latest_4_0/), with use of mobile push notifications (MPN).
+This project contains an example of an application for iPhone that employs the [Lightstreamer iOS Client library](http://www.lightstreamer.com/api/ls-ios-client/latest/), with use of mobile push notifications (MPN).
 
 ![screenshot](screenshot_large.png)
 
@@ -50,7 +50,7 @@ Done this, open the workspace with Xcode and it should compile with no errors. I
 
 ### Compile and Run
 
-A full local deploy of this app requires a Lightstreamer Server 7.0 b2 or greater installation with appropriate Mobile Push Notifications (MPN) module configuration. A detailed step by step guide for setting up the server and configuring the client is available in the README of the following project:
+A full local deploy of this app requires a Lightstreamer Server 7.0 or greater installation with appropriate Mobile Push Notifications (MPN) module configuration. A detailed step by step guide for setting up the server and configuring the client is available in the README of the following project:
 
 * [Lightstreamer - MPN Chat Demo Metadata - Java Adapter](https://github.com/Lightstreamer/Lightstreamer-example-MPNChatMetadata-adapter-java)
 
@@ -74,5 +74,5 @@ A full local deploy of this app requires a Lightstreamer Server 7.0 b2 or greate
 ## Lightstreamer Compatibility Notes
 
 * Compatible with Lightstreamer iOS Client Library version 4.0.0 or newer.
-* For Lightstreamer Allegro (+ iOS Client API support), Presto, Vivace, version 7.0 b2 or greater.
+* For Lightstreamer Server version 7.0 or greater. Ensure that iOS Client API is supported by Lightstreamer Server license configuration.
 * For a version of this example compatible with Lightstreamer iOS Client API version 3.x and Server version 6.1, please refer to [this tag](https://github.com/Lightstreamer/Lightstreamer-example-Chat-client-ios-swift/tree/last-pre-MPN).

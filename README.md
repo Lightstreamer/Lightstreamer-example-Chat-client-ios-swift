@@ -61,7 +61,7 @@ A full local deploy of this app requires a Lightstreamer Server 7.0 or greater i
 * [Lightstreamer - Basic Chat Demo - Java Adapter](https://github.com/Lightstreamer/Lightstreamer-example-Chat-adapter-java)
 * [Lightstreamer - MPN Chat Demo Metadata - Java Adapter](https://github.com/Lightstreamer/Lightstreamer-example-MPNChatMetadata-adapter-java)
 
-### More informations on developing Lightstreamer apps with iOS and MPN:
+### More information on developing Lightstreamer apps with iOS and MPN:
 
 * [Mobile Push Notifications with Lightstreamer Server 7.0 and Client SDKs 4.0](http://blog.lightstreamer.com/2018/01/mobile-push-notifications-with.html)
 

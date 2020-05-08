@@ -59,7 +59,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 	@IBOutlet var _waitView: UIView?
 	
 	
-	//////////////////////////////////////////////////////////////////////////
+	// ////////////////////////////////////////////////////////////////////////
 	// Constructor
 	
 	required init?(coder aDecoder: NSCoder) {
@@ -82,14 +82,14 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 	}
 
 	
-	//////////////////////////////////////////////////////////////////////////
+	// ////////////////////////////////////////////////////////////////////////
 	// Methods of UIViewController
 
 	override func viewWillAppear(_ animated: Bool) {
 		
 		// Register for keyboard notifications
-		NotificationCenter.default.addObserver(self, selector: #selector(ViewController.keyboardWillShow(_:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
-		NotificationCenter.default.addObserver(self, selector: #selector(ViewController.keyboardWillHide(_:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+		NotificationCenter.default.addObserver(self, selector: #selector(ViewController.keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+		NotificationCenter.default.addObserver(self, selector: #selector(ViewController.keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
 
 		NSLog("ViewController: connecting...")
 		
@@ -110,12 +110,12 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 	override func viewWillDisappear(_ animated: Bool) {
 		
 		// Unregister for keyboard notifications while not visible
-		NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillShow, object: nil)
-		NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+		NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+		NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
 	}
 	
 	
-	//////////////////////////////////////////////////////////////////////////
+	// ////////////////////////////////////////////////////////////////////////
 	// Action methods
 	
 	@IBAction func sendTapped() {
@@ -142,7 +142,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 	}
 	
 	
-	//////////////////////////////////////////////////////////////////////////
+	// ////////////////////////////////////////////////////////////////////////
 	// Methods of UITableViewDataSource
 	
 	func numberOfSections(in tableView: UITableView) -> Int {
@@ -164,7 +164,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		var cell = tableView.dequeueReusableCell(withIdentifier: "ChatCell") as? ChatCell
 		if cell == nil {
-			cell = ChatCell(style: UITableViewCellStyle.default, reuseIdentifier: "ChatCell")
+			cell = ChatCell(style: UITableViewCell.CellStyle.default, reuseIdentifier: "ChatCell")
 		}
 		
 		// Synchronize access to row list
@@ -191,7 +191,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 	}
 	
 	
-	//////////////////////////////////////////////////////////////////////////
+	// ////////////////////////////////////////////////////////////////////////
 	// Methods of UITableViewDelegate
 	
 	func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
@@ -258,7 +258,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 	}
 	
 	
-	//////////////////////////////////////////////////////////////////////////
+	// ////////////////////////////////////////////////////////////////////////
 	// Methods of LSClientDelegate
 	
 	func client(_ client: LSLightstreamerClient, didChangeProperty property: String) {
@@ -292,7 +292,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 	}
 	
 	
-    //////////////////////////////////////////////////////////////////////////
+    // ////////////////////////////////////////////////////////////////////////
 	// Disconnection handling
 
 	func handleDisconnection() {
@@ -316,7 +316,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 	}
 	
 
-    //////////////////////////////////////////////////////////////////////////
+    // ////////////////////////////////////////////////////////////////////////
     // MPN registration handling
     
     func deviceTokenAvailable(_ deviceToken: String) {
@@ -345,7 +345,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
 
     
-	//////////////////////////////////////////////////////////////////////////
+	// ////////////////////////////////////////////////////////////////////////
 	// Methods of LSSubscriptionDelegate
 	
 	func subscription(_ subscription: LSSubscription, didClearSnapshotForItemName itemName: String?, itemPos: UInt) {
@@ -375,7 +375,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 			
 			// Scroll to bottom
 			if rowCount > 0 {
-				self._tableView!.scrollToRow(at: IndexPath(row: rowCount-1, section: 0), at: UITableViewScrollPosition.bottom, animated: false)
+				self._tableView!.scrollToRow(at: IndexPath(row: rowCount-1, section: 0), at: UITableView.ScrollPosition.bottom, animated: false)
 			}
 			
 			// Hide wait view
@@ -452,7 +452,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 				if (visibleRows != nil) && visibleRows!.count > 0 {
 					let lastIndexPath = visibleRows![visibleRows!.count-1] as IndexPath
 					if (lastIndexPath as NSIndexPath).row == rowCount-2 {
-						self._tableView!.scrollToRow(at: IndexPath(row: rowCount-1, section: 0), at: UITableViewScrollPosition.bottom, animated: true)
+						self._tableView!.scrollToRow(at: IndexPath(row: rowCount-1, section: 0), at: UITableView.ScrollPosition.bottom, animated: true)
 					}
 				}
 			}
@@ -484,7 +484,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 	}
 	
 	
-    //////////////////////////////////////////////////////////////////////////
+    // ////////////////////////////////////////////////////////////////////////
     // Methods of LSMPNDeviceDelegate
     
     func mpnDeviceDidRegister(_ device: LSMPNDevice) {
@@ -521,7 +521,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
 
     
-    //////////////////////////////////////////////////////////////////////////
+    // ////////////////////////////////////////////////////////////////////////
     // Methods of LSMPNSubscriptionDelegate
 
     func mpnSubscriptionDidSubscribe(_ subscription: LSMPNSubscription) {
@@ -533,7 +533,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
 
     
-	//////////////////////////////////////////////////////////////////////////
+	// ////////////////////////////////////////////////////////////////////////
 	// Methods of UITextFieldDelegate
 	
 	func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -555,7 +555,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 	}
 	
 	
-	//////////////////////////////////////////////////////////////////////////
+	// ////////////////////////////////////////////////////////////////////////
 	// Keyboard hide/show notifications
 	
     @objc func keyboardWillShow(_ notification: Notification) {
@@ -570,8 +570,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 		// Reducing size of table
 		let baseView = self.view.viewWithTag(CHAT_SUBVIEW_TAG)
 		
-		let keyboardFrame = ((notification as NSNotification).userInfo![UIKeyboardFrameBeginUserInfoKey]! as AnyObject).cgRectValue
-		let keyboardDuration = ((notification as NSNotification).userInfo![UIKeyboardAnimationDurationUserInfoKey]! as AnyObject).doubleValue
+		let keyboardFrame = ((notification as NSNotification).userInfo![UIResponder.keyboardFrameBeginUserInfoKey]! as AnyObject).cgRectValue
+		let keyboardDuration = ((notification as NSNotification).userInfo![UIResponder.keyboardAnimationDurationUserInfoKey]! as AnyObject).doubleValue
 		
 		let visibleRows = _tableView!.indexPathsForVisibleRows 
 		var lastIndexPath : IndexPath? = nil
@@ -580,7 +580,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 			lastIndexPath = visibleRows![visibleRows!.count-1] as IndexPath
 		}
 		
-		UIView.animate(withDuration: keyboardDuration!, delay: 0.0, options: UIViewAnimationOptions.curveEaseOut, animations: {
+		UIView.animate(withDuration: keyboardDuration!, delay: 0.0, options: UIView.AnimationOptions.curveEaseOut, animations: {
 			baseView!.frame = CGRect(x: baseView!.frame.origin.x, y: baseView!.frame.origin.y, width: baseView!.frame.size.width, height: baseView!.frame.size.height - (keyboardFrame?.size.height)!)
 		
 		}, completion: {
@@ -590,7 +590,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 	
 				// Scroll down the table so that the last
 				// visible row remains visible
-				self._tableView!.scrollToRow(at: lastIndexPath!, at: UITableViewScrollPosition.bottom, animated: true)
+				self._tableView!.scrollToRow(at: lastIndexPath!, at: UITableView.ScrollPosition.bottom, animated: true)
 			}
 		})
 	}
@@ -607,10 +607,10 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 		// Expanding size of table
 		let baseView = self.view.viewWithTag(CHAT_SUBVIEW_TAG)
 		
-		let keyboardFrame = ((notification as NSNotification).userInfo![UIKeyboardFrameBeginUserInfoKey]! as AnyObject).cgRectValue
-		let keyboardDuration = ((notification as NSNotification).userInfo![UIKeyboardAnimationDurationUserInfoKey]! as AnyObject).doubleValue
+		let keyboardFrame = ((notification as NSNotification).userInfo![UIResponder.keyboardFrameBeginUserInfoKey]! as AnyObject).cgRectValue
+		let keyboardDuration = ((notification as NSNotification).userInfo![UIResponder.keyboardAnimationDurationUserInfoKey]! as AnyObject).doubleValue
 		
-		UIView.animate(withDuration: keyboardDuration!, delay: 0.0, options: UIViewAnimationOptions.curveEaseOut, animations: {
+		UIView.animate(withDuration: keyboardDuration!, delay: 0.0, options: UIView.AnimationOptions.curveEaseOut, animations: {
 			baseView!.frame = CGRect(x: baseView!.frame.origin.x, y: baseView!.frame.origin.y, width: baseView!.frame.size.width, height: baseView!.frame.size.height + (keyboardFrame?.size.height)!)
 
 		}, completion: nil)

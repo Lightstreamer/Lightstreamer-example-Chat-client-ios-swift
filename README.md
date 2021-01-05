@@ -24,29 +24,7 @@ Binaries for the application are not provided.
 
 ## Build
 
-Binaries for the application are not provided, but a full Xcode project specification is provided. Please recall that you need a valid iOS Developer Program membership to debug or deploy your app on a test device.
-
-### Getting Started
-
-Before you can build this demo, you need to install CocoaPods to handle the project dependency on the Lightstreamer iOS client library (see also the Lightstreamer Compatiblity Notes below).
-
-Follow these steps:
-
-* open a terminal and run the following command:
-
-```sh
-$ sudo gem install cocoapods
-```
-
-* `cd` into the directory where you downloaded this project and run the following command:
-
-```sh
-$ pod install
-```
-
-* CocoaPods should now resolve the dependency on the Lightstreamer iOS client library and prepare a workspace for you.
-
-Done this, open the workspace with Xcode and it should compile with no errors. In case of errors during dependency resolution, you can find more information on [CocoaPods official website](https://cocoapods.org).
+Binaries for the application are not provided, but a full Xcode project is provided. Please recall that you need a valid iOS Developer Program membership to debug or deploy your app on a test device.
 
 ### Compile and Run
 

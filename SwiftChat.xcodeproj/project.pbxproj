@@ -3,21 +3,20 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		612FBB43415845BB98A721A5 /* Pods_SwiftChat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F5DC80A2462E5918DFC86E99 /* Pods_SwiftChat.framework */; };
 		8C3C697A195592240048C518 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C3C6979195592240048C518 /* AppDelegate.swift */; };
 		8C3C697C195592240048C518 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C3C697B195592240048C518 /* ViewController.swift */; };
 		8C3C6981195592240048C518 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8C3C6980195592240048C518 /* Images.xcassets */; };
 		8C7815031FFBEF9B00DEB287 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C7815021FFBEF9B00DEB287 /* LaunchScreen.xib */; };
 		8C8C0F5E196BEB340069601A /* ChatCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C8C0F5D196BEB340069601A /* ChatCell.swift */; };
 		8C8C0F5F196C29050069601A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8C3C697D195592240048C518 /* Main.storyboard */; };
+		96A40FAE259B89C900896D1D /* Lightstreamer_iOS_Client in Frameworks */ = {isa = PBXBuildFile; productRef = 96A40FAD259B89C900896D1D /* Lightstreamer_iOS_Client */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		5FC990D6CFDE004E1C3BB958 /* Pods-SwiftChat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftChat.release.xcconfig"; path = "Pods/Target Support Files/Pods-SwiftChat/Pods-SwiftChat.release.xcconfig"; sourceTree = "<group>"; };
 		8C3C6974195592240048C518 /* SwiftChat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftChat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C3C6978195592240048C518 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8C3C6979195592240048C518 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -28,8 +27,6 @@
 		8C7815021FFBEF9B00DEB287 /* LaunchScreen.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LaunchScreen.xib; sourceTree = "<group>"; };
 		8C8C0F5D196BEB340069601A /* ChatCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatCell.swift; sourceTree = "<group>"; };
 		8C90F0A0196AA97400284BFF /* SwiftChat-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SwiftChat-Bridging-Header.h"; sourceTree = "<group>"; };
-		BA6F915F93A25F1C6FEBF83E /* Pods-SwiftChat.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftChat.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SwiftChat/Pods-SwiftChat.debug.xcconfig"; sourceTree = "<group>"; };
-		F5DC80A2462E5918DFC86E99 /* Pods_SwiftChat.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SwiftChat.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -37,7 +34,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				612FBB43415845BB98A721A5 /* Pods_SwiftChat.framework in Frameworks */,
+				96A40FAE259B89C900896D1D /* Lightstreamer_iOS_Client in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -49,8 +46,6 @@
 			children = (
 				8C3C6976195592240048C518 /* SwiftChat */,
 				8C3C6975195592240048C518 /* Products */,
-				E1B6874EB73D2B8AD38E313B /* Pods */,
-				CBB6E41BC0BF2CAE48C6C4D1 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -86,23 +81,6 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		CBB6E41BC0BF2CAE48C6C4D1 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				F5DC80A2462E5918DFC86E99 /* Pods_SwiftChat.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		E1B6874EB73D2B8AD38E313B /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				BA6F915F93A25F1C6FEBF83E /* Pods-SwiftChat.debug.xcconfig */,
-				5FC990D6CFDE004E1C3BB958 /* Pods-SwiftChat.release.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -110,17 +88,18 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8C3C6990195592240048C518 /* Build configuration list for PBXNativeTarget "SwiftChat" */;
 			buildPhases = (
-				C7D4E0DBE5F50D40060E0059 /* [CP] Check Pods Manifest.lock */,
 				8C3C6970195592240048C518 /* Sources */,
 				8C3C6971195592240048C518 /* Frameworks */,
 				8C3C6972195592240048C518 /* Resources */,
-				446777AE598E2161B3F79322 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = SwiftChat;
+			packageProductDependencies = (
+				96A40FAD259B89C900896D1D /* Lightstreamer_iOS_Client */,
+			);
 			productName = SwiftChat;
 			productReference = 8C3C6974195592240048C518 /* SwiftChat.app */;
 			productType = "com.apple.product-type.application";
@@ -156,6 +135,9 @@
 				Base,
 			);
 			mainGroup = 8C3C696B195592240048C518;
+			packageReferences = (
+				96A40FAC259B89C900896D1D /* XCRemoteSwiftPackageReference "Lightstreamer_iOS_Client" */,
+			);
 			productRefGroup = 8C3C6975195592240048C518 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -177,45 +159,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		446777AE598E2161B3F79322 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-SwiftChat/Pods-SwiftChat-frameworks.sh",
-				"${PODS_ROOT}/Lightstreamer_iOS_Client/Lightstreamer_iOS_Client.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Lightstreamer_iOS_Client.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SwiftChat/Pods-SwiftChat-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		C7D4E0DBE5F50D40060E0059 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-SwiftChat-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		8C3C6970195592240048C518 /* Sources */ = {
@@ -338,14 +281,14 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				METAL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
 		};
 		8C3C6991195592240048C518 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = BA6F915F93A25F1C6FEBF83E /* Pods-SwiftChat.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -354,7 +297,10 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = SwiftChat/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.lightstreamer.ios.chat;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -366,7 +312,6 @@
 		};
 		8C3C6992195592240048C518 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5FC990D6CFDE004E1C3BB958 /* Pods-SwiftChat.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -375,7 +320,10 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = SwiftChat/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.lightstreamer.ios.chat;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -406,6 +354,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		96A40FAC259B89C900896D1D /* XCRemoteSwiftPackageReference "Lightstreamer_iOS_Client" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Lightstreamer/Lightstreamer_iOS_Client.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.3.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		96A40FAD259B89C900896D1D /* Lightstreamer_iOS_Client */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 96A40FAC259B89C900896D1D /* XCRemoteSwiftPackageReference "Lightstreamer_iOS_Client" */;
+			productName = Lightstreamer_iOS_Client;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 8C3C696C195592240048C518 /* Project object */;
 }

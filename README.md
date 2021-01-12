@@ -52,6 +52,6 @@ A full local deploy of this app requires a Lightstreamer Server 7.0 or greater i
 ## Lightstreamer Compatibility Notes
 
 * Code compatible with Lightstreamer iOS Client Library version 4.0.0 or newer.
-* For Lightstreamer Server version 7.0 or greater. Ensure that iOS Client API is supported by Lightstreamer Server license configuration.
-* For a version of this example compatible with Lightstreamer iOS Client API version 4.0.0 up to 4.2.1, please refer to [this tag](https://github.com/Lightstreamer/Lightstreamer-example-Chat-client-ios-swift/tree/latest-for-cocoapods).
-* For a version of this example compatible with Lightstreamer iOS Client API version 3.x and Server version 6.1, please refer to [this tag](https://github.com/Lightstreamer/Lightstreamer-example-Chat-client-ios-swift/tree/last-pre-MPN).
+* Build instructions compatible with Lightstreamer iOS Client SDK version 4.3.0 or newer.
+* For Lightstreamer Server version 7.0 or greater. Ensure that iOS Client SDK is supported by Lightstreamer Server license configuration.
+* For a version of this example compatible with Lightstreamer iOS Client SDK versions up to 4.2.1, please refer to [this tag](https://github.com/Lightstreamer/Lightstreamer-example-Chat-client-ios-swift/tree/latest-for-cocoapods).

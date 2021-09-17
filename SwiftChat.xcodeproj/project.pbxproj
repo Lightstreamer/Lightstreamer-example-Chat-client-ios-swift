@@ -7,16 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		57971FC126F4CCA000058B04 /* LightstreamerClient in Frameworks */ = {isa = PBXBuildFile; productRef = 57971FC026F4CCA000058B04 /* LightstreamerClient */; };
 		8C3C697A195592240048C518 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C3C6979195592240048C518 /* AppDelegate.swift */; };
 		8C3C697C195592240048C518 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C3C697B195592240048C518 /* ViewController.swift */; };
 		8C3C6981195592240048C518 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8C3C6980195592240048C518 /* Images.xcassets */; };
 		8C7815031FFBEF9B00DEB287 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C7815021FFBEF9B00DEB287 /* LaunchScreen.xib */; };
 		8C8C0F5E196BEB340069601A /* ChatCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C8C0F5D196BEB340069601A /* ChatCell.swift */; };
 		8C8C0F5F196C29050069601A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8C3C697D195592240048C518 /* Main.storyboard */; };
-		96A40FAE259B89C900896D1D /* Lightstreamer_iOS_Client in Frameworks */ = {isa = PBXBuildFile; productRef = 96A40FAD259B89C900896D1D /* Lightstreamer_iOS_Client */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		57971FBD26F4CC2900058B04 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		57971FBE26F4CC2900058B04 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		8C3C6974195592240048C518 /* SwiftChat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftChat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C3C6978195592240048C518 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8C3C6979195592240048C518 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -34,18 +36,28 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				96A40FAE259B89C900896D1D /* Lightstreamer_iOS_Client in Frameworks */,
+				57971FC126F4CCA000058B04 /* LightstreamerClient in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		57F7059C26CD49C7008DC7B9 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		8C3C696B195592240048C518 = {
 			isa = PBXGroup;
 			children = (
+				57971FBD26F4CC2900058B04 /* LICENSE */,
+				57971FBE26F4CC2900058B04 /* README.md */,
 				8C3C6976195592240048C518 /* SwiftChat */,
 				8C3C6975195592240048C518 /* Products */,
+				57F7059C26CD49C7008DC7B9 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -98,7 +110,7 @@
 			);
 			name = SwiftChat;
 			packageProductDependencies = (
-				96A40FAD259B89C900896D1D /* Lightstreamer_iOS_Client */,
+				57971FC026F4CCA000058B04 /* LightstreamerClient */,
 			);
 			productName = SwiftChat;
 			productReference = 8C3C6974195592240048C518 /* SwiftChat.app */;
@@ -111,7 +123,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftMigration = 0700;
-				LastUpgradeCheck = 1140;
+				LastUpgradeCheck = 1250;
 				ORGANIZATIONNAME = Weswit;
 				TargetAttributes = {
 					8C3C6973195592240048C518 = {
@@ -136,7 +148,7 @@
 			);
 			mainGroup = 8C3C696B195592240048C518;
 			packageReferences = (
-				96A40FAC259B89C900896D1D /* XCRemoteSwiftPackageReference "Lightstreamer_iOS_Client" */,
+				57971FBF26F4CCA000058B04 /* XCRemoteSwiftPackageReference "Lightstreamer-lib-client-swift" */,
 			);
 			productRefGroup = 8C3C6975195592240048C518 /* Products */;
 			projectDirPath = "";
@@ -208,6 +220,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -231,7 +244,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				METAL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -262,6 +275,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -278,7 +292,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				METAL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
@@ -296,7 +310,7 @@
 				CODE_SIGN_ENTITLEMENTS = SwiftChat/SwiftChat.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = SwiftChat/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -319,7 +333,7 @@
 				CODE_SIGN_ENTITLEMENTS = SwiftChat/SwiftChat.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = SwiftChat/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -356,21 +370,21 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		96A40FAC259B89C900896D1D /* XCRemoteSwiftPackageReference "Lightstreamer_iOS_Client" */ = {
+		57971FBF26F4CCA000058B04 /* XCRemoteSwiftPackageReference "Lightstreamer-lib-client-swift" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/Lightstreamer/Lightstreamer_iOS_Client.git";
+			repositoryURL = "https://github.com/Lightstreamer/Lightstreamer-lib-client-swift";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 4.3.0;
+				minimumVersion = "5.0.0-beta.2";
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		96A40FAD259B89C900896D1D /* Lightstreamer_iOS_Client */ = {
+		57971FC026F4CCA000058B04 /* LightstreamerClient */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 96A40FAC259B89C900896D1D /* XCRemoteSwiftPackageReference "Lightstreamer_iOS_Client" */;
-			productName = Lightstreamer_iOS_Client;
+			package = 57971FBF26F4CCA000058B04 /* XCRemoteSwiftPackageReference "Lightstreamer-lib-client-swift" */;
+			productName = LightstreamerClient;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

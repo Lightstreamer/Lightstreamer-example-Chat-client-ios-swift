@@ -21,10 +21,8 @@ import UIKit
 import LightstreamerClient
 
 // Configuration for local installation
-//let SERVER_URL = "http://localhost:8080"
-//let ADAPTER_SET = "CHAT"
-let SERVER_URL = "http://192.168.43.35:8080"
-let ADAPTER_SET = "DEMO"
+let SERVER_URL = "http://localhost:8080"
+let ADAPTER_SET = "CHAT"
 let DATA_ADAPTER = "CHAT_ROOM"
 
 /* Configuration for online demo server

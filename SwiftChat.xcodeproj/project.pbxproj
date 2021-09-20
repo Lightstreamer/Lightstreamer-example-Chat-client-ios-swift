@@ -28,7 +28,6 @@
 		8C4527A2202CC70B000F3791 /* SwiftChat.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SwiftChat.entitlements; sourceTree = "<group>"; };
 		8C7815021FFBEF9B00DEB287 /* LaunchScreen.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LaunchScreen.xib; sourceTree = "<group>"; };
 		8C8C0F5D196BEB340069601A /* ChatCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatCell.swift; sourceTree = "<group>"; };
-		8C90F0A0196AA97400284BFF /* SwiftChat-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SwiftChat-Bridging-Header.h"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,7 +86,6 @@
 			isa = PBXGroup;
 			children = (
 				8C3C6978195592240048C518 /* Info.plist */,
-				8C90F0A0196AA97400284BFF /* SwiftChat-Bridging-Header.h */,
 				8C4527A2202CC70B000F3791 /* SwiftChat.entitlements */,
 			);
 			name = "Supporting Files";
@@ -318,7 +316,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.lightstreamer.ios.chat;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "SwiftChat/SwiftChat-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 			};
@@ -341,7 +338,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.lightstreamer.ios.chat;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "SwiftChat/SwiftChat-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Release;

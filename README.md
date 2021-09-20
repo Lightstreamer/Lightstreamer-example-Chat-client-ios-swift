@@ -4,7 +4,7 @@
 
 The *Chat Demo* is a very simple chat application based on Lightstreamer.
 
-This project contains an example of an application for iPhone that employs the [Lightstreamer iOS Client library](http://www.lightstreamer.com/api/ls-ios-client/latest/), with use of mobile push notifications (MPN).
+This project contains an example of an application for iPhone that employs the [Lightstreamer Swift Client library](http://www.lightstreamer.com/api/ls-swift-client/latest/), with use of mobile push notifications (MPN).
 
 ![screenshot](screenshot_large.png)
 
@@ -12,7 +12,7 @@ This project contains an example of an application for iPhone that employs the [
 
 This app, compatible with iPhone, is a Swift version of the [Lightstreamer - Basic Chat Demo - HTML Client](https://github.com/Lightstreamer/Lightstreamer-example-Chat-client-javascript).
 
-This app uses the **iOS Client API for Lightstreamer** to handle the communications with Lightstreamer Server. A simple user interface is implemented to display the real-time messages received from Lightstreamer Server. Additionally, the app is able to forward incoming messages via mobile push notifications to any registered client.
+This app uses the **Swift Client API for Lightstreamer** to handle the communications with Lightstreamer Server. A simple user interface is implemented to display the real-time messages received from Lightstreamer Server. Additionally, the app is able to forward incoming messages via mobile push notifications to any registered client.
 
 Further details about developing apps on iOS with Lightstreamer and MPNs are discussed in this blog post:
 
@@ -51,7 +51,7 @@ A full local deploy of this app requires a Lightstreamer Server 7.0 or greater i
 
 ## Lightstreamer Compatibility Notes
 
-* Code compatible with Lightstreamer iOS Client Library version 4.0.0 or newer.
-* Build instructions compatible with Lightstreamer iOS Client SDK version 4.3.0 or newer.
+* Code compatible with Lightstreamer Swift Client Library version 5.0.0 or newer.
+* Build instructions compatible with Lightstreamer Swift Client SDK version 5.0.0 or newer.
 * For Lightstreamer Server version 7.0 or greater. Ensure that iOS Client SDK is supported by Lightstreamer Server license configuration.
-* For a version of this example compatible with Lightstreamer iOS Client SDK versions up to 4.2.1, please refer to [this tag](https://github.com/Lightstreamer/Lightstreamer-example-Chat-client-ios-swift/tree/latest-for-cocoapods).
+* For a version of this example compatible with Lightstreamer iOS Client SDK versions up to 4, please refer to [this tag](https://github.com/Lightstreamer/Lightstreamer-example-Chat-client-ios-swift/tree/latest-for-client-4.x).
